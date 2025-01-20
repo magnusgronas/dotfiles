@@ -1,0 +1,23 @@
+title = "Ghostty"
+class = "Ghostty"
+
+theme = catppuccin-macchiato
+
+background-opacity = 0.9
+
+gtk-titlebar = false
+window-padding-x = 0,0
+window-padding-y = 0,0
+adjust-cell-height = 8
+# window-padding-balance = true
+# window-padding-color = extend
+
+font-family = JetBrainsMono Nerd Font
+font-style = SemiBold
+font-style-bold = false
+font-size = 16
+
+cursor-style = bar
+adjust-cursor-thickness = 1
+# cursor-invert-fg-bg = true
+shell-integration-features = no-cursor
