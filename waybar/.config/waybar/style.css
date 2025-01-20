@@ -1,0 +1,225 @@
+@import "macchiato.css";
+
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family:
+    JetBrainsMono Nerd Font,
+    Waybar Font,
+    FontAwesome,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+window#waybar {
+  background-color: alpha(@base, 0.3);
+  /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+  color: @text;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+}
+
+/* you can set a style on hover for any module like this */
+
+#workspaces button {
+  padding: 0 5px 0 5px;
+  background-color: transparent;
+  color: @text;
+}
+
+#workspaces button:hover {
+  background: alpha(@lavender, 0.15);
+  box-shadow: inherit;
+  text-shadow: inherit;
+}
+
+#workspaces button.focused {
+  background-color: red;
+}
+
+#workspaces button.active {
+  margin-left: -5px;
+  padding-right: 5px;
+  color: @flamingo;
+}
+
+#workspaces button.urgent {
+  color: @red;
+}
+
+#idle_inhibitor {
+  padding: 0 10px;
+  color: @lavender;
+}
+
+#idle_inhibitor.activated {
+  color: @mauve;
+}
+
+#clock {
+  color: @rosewater;
+  padding: 0px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#battery {
+  background-color: transparent;
+  color: @text;
+  font-size: 16px;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+  color: @red;
+}
+
+#power-profiles-daemon {
+  font-size: 18px;
+  padding: 0px 10px;
+}
+
+#power-profiles-daemon.performance {
+  color: @red;
+}
+
+#power-profiles-daemon.balanced {
+  color: @blue;
+}
+
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#memory {
+  padding: 0px 20px 0px 10px;
+}
+
+#memory.high {
+  color: @red;
+}
+
+#memory.medium {
+  color: @yellow;
+}
+
+#memory.low {
+  color: @green;
+}
+
+#network {
+  margin: 0px 15px 0px 10px;
+}
+
+#network.disconnected {
+  color: @red;
+}
+
+#pulseaudio {
+  padding: 0px 10px 0px 10px;
+  color: @text;
+}
+
+#pulseaudio.muted {
+  color: @red;
+}
+
+#bluetooth {
+  font-size: 20px;
+}
+
+#bluetooth.off,
+#bluetooth.disabled {
+  color: @red;
+}
+
+#privacy-item {
+  padding: 0 10px 0 0;
+  color: @maroon;
+}
+
+tooltip {
+  color: @text;
+  background-color: @crust;
+  border: none;
+  border-radius: 10px;
+}
+
+#backlight,
+#backlight.medium {
+  background-color: transparent;
+  color: @text;
+  padding: 0px 10px 1px 0px;
+  font-size: 20px;
+}
+
+#backlight.full {
+  color: @flamingo;
+}
+
+#backlight.high {
+  color: @rosewater;
+}
+
+#backlight.low {
+  color: @blue;
+}
+
+#system {
+  padding: 0px 0px 0px 20px;
+}
+
+/* NOTE: Custom modules */
+
+#custom-separator {
+  padding: 0px 0px 0 10px;
+  color: alpha(@text, 0.4);
+}
+
+#custom-power {
+  padding-left: 20px;
+  font-size: 22px;
+}
+
+#custom-updates {
+  padding: 0px 15px 0px 0px;
+}
+
+#custom-updates.has-updates {
+  color: @peach;
+}
+
+#custom-updates.updated {
+  color: alpha(@green, 0.8);
+}
+
+#custom-music {
+  padding: 0 20px 0 10px;
+}
+
+#custom-notification {
+  padding: 0 20px 0 0;
+}
