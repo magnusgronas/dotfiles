@@ -1,6 +1,3 @@
-source ~/.zsh/catppuccin_macchiato-zsh-syntax-highlighting.zsh
-
-
 # Java
 export JAVA_HOME=/usr/lib/jvm/default
 export PATH=$JAVA_HOME/bin:$PATH
@@ -16,6 +13,7 @@ if [[ "$(uname -r)" == *WSL* ]]; then
   export PATH=$JAVA_HOME/bin:$PATH
 
 fi
+
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -38,6 +36,12 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
+zinit snippet OMZP::command-not-found
+
+# Load completions
+autoload -Uz compinit && compinit
+
+zinit cdreplay -q
 
 # History
 HISTSIZE=5000
@@ -56,20 +60,14 @@ HIST_STAMPS="dd.mm.yyyy"
 # Prompt
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/myconf.toml)"
 
-# completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-# preview directory's content with eza when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=always $realpath'
 
+# Aliases
 alias c="clear"
 alias cdc="cd && clear"
 alias ls="eza --color=always --icons=always"
