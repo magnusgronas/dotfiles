@@ -1,4 +1,4 @@
-@import "macchiato.css";
+@import "mocha.css";
 
 * {
   /* `otf-font-awesome` is required to be installed for icons */
@@ -15,7 +15,7 @@
 }
 
 window#waybar {
-  background-color: alpha(@base, 0.3);
+  background-color: @base;
   /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
   color: @text;
   transition-property: background-color;

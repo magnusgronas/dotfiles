@@ -1,9 +1,9 @@
 title = "Ghostty"
 class = "Ghostty"
 
-theme = catppuccin-macchiato
+theme = catppuccin-mocha
 
-background-opacity = 0.9
+background-opacity = 1
 
 gtk-titlebar = false
 window-padding-x = 0,0
