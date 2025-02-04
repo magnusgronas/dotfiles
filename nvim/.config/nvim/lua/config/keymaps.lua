@@ -64,7 +64,11 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Diagnostic keymaps
-keymap("n", "ød", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-keymap("n", "æd", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+keymap("n", "ød", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Go to previous diagnostic message" })
+keymap("n", "æd", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Go to next diagnostic message" })
 -- keymap("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })

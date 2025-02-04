@@ -29,16 +29,15 @@ vim.o.clipboard = "unnamedplus"
 vim.opt.conceallevel = 0
 vim.opt.mouse = "a"
 vim.opt.showmode = false
+vim.opt.termguicolors = true
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.opt.termguicolors = true
 vim.opt.timeoutlen = 1000
 vim.opt.undofile = true
 vim.opt.updatetime = 100
 vim.opt.writebackup = false
 vim.opt.endofline = true
 vim.opt.fixendofline = true
-vim.opt.colorcolumn = "80"
 
 -- Searching behaviour
 vim.opt.hlsearch = true
@@ -49,20 +48,15 @@ vim.o.smartcase = true
 
 vim.diagnostic.config({
 	virtual_text = true,
-	signs = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+	},
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
 })
-
-local signs = {
-	Error = "",
-	Warn = "",
-	Hint = "",
-	Info = "",
-}
-
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
