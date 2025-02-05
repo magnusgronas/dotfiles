@@ -10,14 +10,14 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 		local builtin = require("telescope.builtin")
-		local themes = require("telescope.themes")
+		-- local themes = require("telescope.themes")
 
 		telescope.setup({
-			pickers = {
-				find_files = {
-					theme = "ivy",
-				},
-			},
+			-- pickers = {
+			-- 	find_files = {
+			-- 		theme = "ivy",
+			-- 	},
+			-- },
 			defaults = {
 				path_display = { "smart" },
 				mappings = {

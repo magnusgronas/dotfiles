@@ -1,10 +1,10 @@
 return {
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},
+	-- {
+	-- 	"norcalli/nvim-colorizer.lua",
+	-- 	config = function()
+	-- 		require("colorizer").setup()
+	-- 	end,
+	-- },
 	{
 		"stevearc/dressing.nvim",
 		event = "VeryLazy",
@@ -33,18 +33,18 @@ return {
 		"christoomey/vim-tmux-navigator",
 		lazy = false,
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {
-			indent = {
-				char = "│",
-			},
-			scope = {
-				enabled = false,
-			},
-		},
-	},
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	main = "ibl",
+	-- 	---@module "ibl"
+	-- 	---@type ibl.config
+	-- 	opts = {
+	-- 		indent = {
+	-- 			char = "│",
+	-- 		},
+	-- 		scope = {
+	-- 			enabled = false,
+	-- 		},
+	-- 	},
+	-- },
 }
