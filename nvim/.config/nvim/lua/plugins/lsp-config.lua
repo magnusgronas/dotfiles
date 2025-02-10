@@ -1,13 +1,7 @@
 return {
 	{
-		"nvim-java/nvim-java",
-		event = "VeryLazy",
-		config = function()
-			require("java").setup({})
-		end,
-	},
-	{
 		"williamboman/mason-nvim-dap.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("mason-nvim-dap").setup({
 				ensure_installed = { "java-debug-adapter", "java-test", "codelldb" },
@@ -16,8 +10,10 @@ return {
 	},
 	{
 		"williamboman/mason.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
+			event = "VeryLazy",
 			config = function()
 				local mason = require("mason")
 				local mason_lspconfig = require("mason-lspconfig")
@@ -54,7 +50,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "VeryLazy", "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
@@ -134,58 +130,6 @@ return {
 							},
 						},
 					})
-				end,
-			})
-			-- Use an autocommand to detect when jdtls attaches
-			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = function(args)
-					local client_id = args.data.client_id
-					local client = vim.lsp.get_client_by_id(client_id)
-
-					-- Check if the attached LSP client is jdtls
-					if client.name == "jdtls" then
-						local buf = vim.api.nvim_get_current_buf()
-
-						local springboot_nvim = require("springboot-nvim")
-
-						vim.keymap.set(
-							"n",
-							"<leader>jr",
-							springboot_nvim.boot_run,
-							{ desc = "Run Spring Boot", buffer = buf }
-						)
-						vim.keymap.set(
-							"n",
-							"<leader>jc",
-							springboot_nvim.generate_class,
-							{ desc = "New class", buffer = buf }
-						)
-						vim.keymap.set(
-							"n",
-							"<leader>ji",
-							springboot_nvim.generate_interface,
-							{ desc = "New interface", buffer = buf }
-						)
-						vim.keymap.set(
-							"n",
-							"<leader>je",
-							springboot_nvim.generate_enum,
-							{ desc = "New enum", buffer = buf }
-						)
-
-						vim.keymap.set("n", "<leader>jo", function()
-							vim.lsp.buf.code_action({
-								context = { only = { "source.organizeImports" } },
-								apply = true,
-							})
-						end, { desc = "Organize imports" })
-
-						vim.keymap.set("n", "<leader>jg", function()
-							vim.lsp.buf.code_action({
-								context = { only = { "source.generate" } },
-							})
-						end, { desc = "Generate" })
-					end
 				end,
 			})
 		end,

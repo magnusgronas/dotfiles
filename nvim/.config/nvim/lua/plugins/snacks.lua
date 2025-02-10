@@ -1,50 +1,97 @@
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
-	lazy = false,
-	---@type snacks.Config
-	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
-		animate = {
-			enabled = true,
-			fps = 120,
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"rcarriga/nvim-notify",
+	},
+	keys = {
+		{
+			"<leader>z",
+			function()
+				Snacks.zen()
+			end,
+			desc = "Toggle Zen Mode",
 		},
-
-		bigfile = { enabled = true },
-
-		dashboard = { enabled = false },
-
-		indent = {
-			indent = {
-				priority = 1,
-				enabled = true, -- enable indent guides
-				char = "│",
-				only_scope = false, -- only show indent guides of the scope
-				only_current = false, -- only show indent guides in the current window
-				hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
+		{
+			"<leader>Z",
+			function()
+				Snacks.zen.zoom()
+			end,
+			desc = "Toggle Zoom",
+		},
+	},
+	opts = {
+		notifier = {
+			enabled = true,
+			style = "compact",
+		},
+		dashboard = {
+			width = 40,
+			preset = {
+				keys = {
+					{
+						icon = "  >",
+						desc = "New File",
+						key = "n",
+						action = ":ene | startinsert",
+					},
+					{
+						icon = "  >",
+						desc = "Find Files",
+						key = "f",
+						action = ":lua Snacks.dashboard.pick('files')",
+					},
+					{
+						icon = "  >",
+						key = "g",
+						desc = "Find Text",
+						action = ":lua Snacks.dashboard.pick('live_grep')",
+					},
+					{
+						icon = "  >",
+						key = "r",
+						desc = "Recent Files",
+						action = ":lua Snacks.dashboard.pick('oldfiles')",
+					},
+					{ icon = "  >", key = "d", desc = "Open direcoties", action = ":Oil --preview" },
+					{
+						icon = "  >",
+						key = "c",
+						desc = "Config",
+						action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+					},
+					{
+						icon = "󰒲  >",
+						key = "L",
+						desc = "Lazy",
+						action = ":Lazy",
+						enabled = package.loaded.lazy ~= nil,
+					},
+					{ icon = "  >", key = "q", desc = "Quit", action = ":qa" },
+				},
 			},
-			animate = { enabled = false },
-			scope = {
-				enabled = false, -- enable highlighting the current scope },
+		},
+		zen = {
+			toggles = {
+				dim = true,
+				git_signs = false,
+				mini_diff_signs = false,
+				-- diagnostics = false,
+				-- inlay_hints = false,
 			},
-
-			input = {
-				enabled = true,
-				icon = " ",
-				icon_hl = "SnacksInputIcon",
-				icon_pos = "left",
-				prompt_pos = "title",
-				win = { style = "input" },
-				expand = true,
+			show = {
+				statusline = false, -- can only be shown when using the global statusline
+				tabline = false,
 			},
-			picker = { enabled = false },
-			notifier = { enabled = true },
-			quickfile = { enabled = true },
-			scroll = { enabled = true },
-			statuscolumn = { enabled = true },
-			words = { enabled = true },
+			zoom = {
+				toggles = {},
+				show = { statusline = true, tabline = true },
+				win = {
+					backdrop = false,
+					width = 0, -- full width
+				},
+			},
 		},
 	},
 }

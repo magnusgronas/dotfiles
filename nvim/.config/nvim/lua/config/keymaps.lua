@@ -10,7 +10,7 @@ keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", { silent = true })
 
 local opts = { noremap = true, silent = true }
 
-keymap("n", "<leader>pv", ":Oil --float<CR>", { desc = "Open file explorer" })
+keymap("n", "<leader>pv", ":Oil --preview<CR>", { desc = "Open file explorer" })
 -- delete single character without copying into register
 keymap("n", "x", '"_x', opts)
 

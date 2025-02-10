@@ -5,10 +5,10 @@ return {
 	-- 		require("colorizer").setup()
 	-- 	end,
 	-- },
-	{
-		"stevearc/dressing.nvim",
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	"stevearc/dressing.nvim",
+	-- 	event = "VeryLazy",
+	-- },
 	{
 		"kylechui/nvim-surround",
 		event = { "BufReadPre", "BufNewFile" },
