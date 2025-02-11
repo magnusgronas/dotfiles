@@ -1,25 +1,10 @@
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
+	lazy = false,
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify",
-	},
-	keys = {
-		{
-			"<leader>z",
-			function()
-				Snacks.zen()
-			end,
-			desc = "Toggle Zen Mode",
-		},
-		{
-			"<leader>Z",
-			function()
-				Snacks.zen.zoom()
-			end,
-			desc = "Toggle Zoom",
-		},
 	},
 	opts = {
 		notifier = {
@@ -27,8 +12,10 @@ return {
 			style = "compact",
 		},
 		dashboard = {
-			width = 40,
+			enabled = true,
+			width = 80,
 			preset = {
+				header = [[]],
 				keys = {
 					{
 						icon = "  >",
@@ -71,6 +58,31 @@ return {
 					{ icon = "  >", key = "q", desc = "Quit", action = ":qa" },
 				},
 			},
+			sections = {
+				{
+					pane = 2,
+					{ icon = " ", title = "Keymaps", section = "keys", width = 50, indent = 2, padding = 1 },
+					{
+						icon = " ",
+						title = "Git Status",
+						section = "terminal",
+						enabled = function()
+							return Snacks.git.get_root() ~= nil
+						end,
+						cmd = "git --no-pager diff --stat -B -M -C",
+						height = 5,
+						padding = 1,
+						ttl = 5 * 60,
+					},
+					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+					{ section = "startup" },
+				},
+				{
+					section = "terminal",
+					cmd = "chafa ~/Pictures/wallpaper/marine-tunnel.jpg --format symbols --symbols vhalf --size 80x20 --stretch; sleep .1",
+					height = 20,
+				},
+			},
 		},
 		zen = {
 			toggles = {
@@ -92,6 +104,16 @@ return {
 					width = 0, -- full width
 				},
 			},
+		},
+	},
+	config = true,
+	keys = {
+		{
+			"<leader>z",
+			function()
+				Snacks.zen()
+			end,
+			desc = "Enable Zen Mode",
 		},
 	},
 }
