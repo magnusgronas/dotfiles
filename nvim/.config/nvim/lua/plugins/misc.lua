@@ -1,11 +1,5 @@
 return {
 	-- {
-	-- 	"norcalli/nvim-colorizer.lua",
-	-- 	config = function()
-	-- 		require("colorizer").setup()
-	-- 	end,
-	-- },
-	-- {
 	-- 	"stevearc/dressing.nvim",
 	-- 	event = "VeryLazy",
 	-- },
@@ -33,18 +27,15 @@ return {
 		"christoomey/vim-tmux-navigator",
 		lazy = false,
 	},
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	main = "ibl",
-	-- 	---@module "ibl"
-	-- 	---@type ibl.config
-	-- 	opts = {
-	-- 		indent = {
-	-- 			char = "│",
-	-- 		},
-	-- 		scope = {
-	-- 			enabled = false,
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"catgoose/nvim-colorizer.lua",
+		event = "BufReadPre",
+		opts = {
+			user_default_options = {
+				virtualtext = "■",
+				-- Display virtualtext inline with color.  boolean|'before'|'after'.  True sets to 'after'
+				virtualtext_inline = "before",
+			},
+		},
+	},
 }
