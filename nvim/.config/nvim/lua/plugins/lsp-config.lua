@@ -71,17 +71,16 @@ return {
 					local opts = { buffer = ev.buf, silent = true }
 					-- LSP keymaps
 					keymap("n", "K", vim.lsp.buf.hover, opts)
-					keymap("n", "gd", vim.lsp.buf.definition, opts)
 					keymap("n", "gD", vim.lsp.buf.declaration, opts)
 					opts.desc = "Lsp rename"
 					keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 					opts.desc = "Code actions"
-					keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+					keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
-					opts.desc = "Lsp references"
-					keymap("n", "<leader>cr", telescope.lsp_references, opts)
-					opts.desc = "Lsp implementations"
-					keymap("n", "<leader>ci", telescope.lsp_implementations, opts)
+					-- opts.desc = "Lsp references"
+					-- keymap("n", "<leader>cr", telescope.lsp_references, opts)
+					-- opts.desc = "Lsp implementations"
+					-- keymap("n", "<leader>ci", telescope.lsp_implementations, opts)
 				end,
 			})
 

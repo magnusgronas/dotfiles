@@ -45,7 +45,7 @@ return {
 
 			cmp.setup({
 				completion = {
-					competeopt = "menu,menuone,preview,noselect",
+					completeopt = "menu,menuone,preview,noselect",
 				},
 
 				snippet = {

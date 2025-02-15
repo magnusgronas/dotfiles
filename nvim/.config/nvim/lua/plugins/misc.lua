@@ -28,14 +28,16 @@ return {
 		lazy = false,
 	},
 	{
-		"catgoose/nvim-colorizer.lua",
+		"brenoprata10/nvim-highlight-colors",
 		event = "BufReadPre",
-		opts = {
-			user_default_options = {
-				virtualtext = "■",
-				-- Display virtualtext inline with color.  boolean|'before'|'after'.  True sets to 'after'
-				virtualtext_inline = "before",
-			},
-		},
+		config = function()
+			require("nvim-highlight-colors").setup({
+
+				render = "virtual",
+				virtual_symbol = "󱓻",
+				virtual_symbol_position = "eow",
+				virtual_symbol_prefix = " ",
+			})
+		end,
 	},
 }
