@@ -5,56 +5,9 @@ return {
 	config = function()
 		local lazy = require("lazy.status")
 
-		local hide = function()
-			return vim.fn.winwidth(0) > 100
-		end
+		local util = require("plugins.lualine.lualine_functions")
 
-		-- Show currently attached lsp
-		local lsp = function()
-			local clients = vim.lsp.get_clients({ bufnr = 0 })
-			if #clients == 0 then
-				return ""
-			end
-
-			local client_names = {}
-			for _, client in ipairs(clients) do
-				table.insert(client_names, client.name)
-			end
-
-			if client_names[1] == "null-ls" then
-				return client_names[2]
-			end
-
-			return client_names[1]
-		end
-
-		-- Color overrides
-		local catppuccin = require("lualine.themes.catppuccin")
-
-		-- Custom colors
-		catppuccin.insert.a.fg = "#A6E3A1"
-		catppuccin.insert.a.bg = "#1E1E2E"
-		catppuccin.insert.a.gui = ""
-
-		catppuccin.normal.a.fg = "#89B4FA"
-		catppuccin.normal.a.bg = "#1E1E2E"
-		catppuccin.normal.a.gui = ""
-
-		catppuccin.visual.a.fg = "#A6E3A1"
-		catppuccin.visual.a.bg = "#1E1E2E"
-		catppuccin.visual.a.gui = ""
-
-		catppuccin.command.a.fg = "#FAB387"
-		catppuccin.command.a.bg = "#1E1E2E"
-		catppuccin.command.a.gui = ""
-
-		catppuccin.terminal.a.fg = "#F38BA8"
-		catppuccin.terminal.a.bg = "#1E1E2E"
-		catppuccin.terminal.a.gui = ""
-
-		catppuccin.replace.a.fg = "#F38BA8"
-		catppuccin.replace.a.bg = "#1E1E2E"
-		catppuccin.replace.a.gui = ""
+		local colors = require("plugins.lualine.lualine_colors")
 
 		require("lualine").setup({
 
@@ -62,7 +15,7 @@ return {
 				disabled_filetypes = { "snacks_dashboard" },
 				section_separators = "",
 				component_separators = "",
-				theme = catppuccin,
+				theme = colors.catppuccin,
 			},
 
 			sections = {
@@ -84,7 +37,7 @@ return {
 						"branch",
 						icon = "󰘬",
 						color = { fg = "#6e738d", bg = "#1E1E2E" },
-						cond = hide,
+						cond = util.hide,
 					},
 					{
 						"diff",
@@ -94,23 +47,24 @@ return {
 							modified = "LualineDiff",
 							removed = "LualineDiff",
 						},
-						cond = hide,
+						cond = util.hide,
 					},
 				},
 				lualine_x = {
 					{
 						"diagnostics",
 						update_in_insert = true,
-						cond = hide,
+						cond = util.hide,
 					},
 					{
 						lazy.updates(),
-						cond = lazy.has_updates() or hide(),
+						cond = lazy.has_updates() or util.hide,
 						color = { fg = "#fab387", bg = "#1E1E2E" },
 					},
 					{
-						lsp,
+						util.lsp,
 						color = { fg = "#6e738d", bg = "#1E1E2E" },
+						cond = util.hide,
 					},
 				},
 				lualine_y = {
