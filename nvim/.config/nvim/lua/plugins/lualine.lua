@@ -106,33 +106,33 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-			tabline = {
-				lualine_a = {
-					{
-						"buffers",
-						symbols = {
-							alternate_file = "",
-						},
-						filetype_names = {
-							oil = "Oil",
-							snacks = "Snacks",
-						},
-					},
-				},
-				lualine_b = {},
-				lualine_c = {},
-				lualine_x = {},
-				lualine_y = {},
-				lualine_z = {
-					{
-						util.close,
-						on_click = function()
-							vim.cmd([[:wq]])
-						end,
-						color = { bg = "#f38ba8" },
-					},
-				},
-			},
+
+			-- tabline = {
+			-- 	lualine_a = {
+			-- 		{
+			-- 			"buffers",
+			-- 			symbols = {
+			-- 				alternate_file = "",
+			-- 			},
+			-- 			filetype_names = {
+			-- 				oil = "Oil",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	lualine_b = {},
+			-- 	lualine_c = {},
+			-- 	lualine_x = {},
+			-- 	lualine_y = {},
+			-- 	lualine_z = {
+			-- 		{
+			-- 			util.close,
+			-- 			on_click = function()
+			-- 				vim.cmd([[:wq]])
+			-- 			end,
+			-- 			color = { bg = "#f38ba8" },
+			-- 		},
+			-- 	},
+			-- },
 		})
 	end,
 }
