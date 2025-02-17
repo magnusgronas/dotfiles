@@ -34,7 +34,7 @@ map("<leader>n", function()
 end, { desc = "Notification History" })
 
 map("<leader>fd", function()
-	Snacks.picker.diagnostics()
+	Snacks.picker.diagnostics({ style = "dropdown" })
 end, { desc = "Diagnostics" })
 
 -- LSP mappings

@@ -4,9 +4,7 @@ return {
 	event = "VeryLazy",
 	config = function()
 		local lazy = require("lazy.status")
-
 		local util = require("plugins.lualine.lualine_functions")
-
 		local colors = require("plugins.lualine.lualine_colors")
 
 		require("lualine").setup({
@@ -19,7 +17,14 @@ return {
 			},
 
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = {
+					{
+						"mode",
+						fmt = function(str)
+							return str:sub(1, 1)
+						end,
+					},
+				},
 				lualine_b = {
 					{
 						"filename",
@@ -41,7 +46,7 @@ return {
 					},
 					{
 						"diff",
-						symbols = { added = " ", modified = " ", removed = " " },
+						-- symbols = { added = " ", modified = " ", removed = " " },
 						diff_color = {
 							added = "LualineDiff",
 							modified = "LualineDiff",
@@ -57,8 +62,8 @@ return {
 						cond = util.hide,
 					},
 					{
-						lazy.updates(),
-						cond = lazy.has_updates() or util.hide,
+						lazy.updates,
+						cond = lazy.has_updates or util.hide,
 						color = { fg = "#fab387", bg = "#1E1E2E" },
 					},
 					{
@@ -74,8 +79,23 @@ return {
 					},
 				},
 				lualine_z = {
-					"progress",
-					"location",
+					{
+						util.space,
+						padding = 0,
+					},
+					{
+						"progress",
+						icon = "",
+						padding = 0,
+					},
+					{
+						"location",
+						padding = 0,
+					},
+					{
+						util.space,
+						padding = 0,
+					},
 				},
 			},
 			inactive_sections = {
@@ -85,6 +105,33 @@ return {
 				lualine_x = { "progress", "location" },
 				lualine_y = {},
 				lualine_z = {},
+			},
+			tabline = {
+				lualine_a = {
+					{
+						"buffers",
+						symbols = {
+							alternate_file = "",
+						},
+						filetype_names = {
+							oil = "Oil",
+							snacks = "Snacks",
+						},
+					},
+				},
+				lualine_b = {},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {
+					{
+						util.close,
+						on_click = function()
+							vim.cmd([[:wq]])
+						end,
+						color = { bg = "#f38ba8" },
+					},
+				},
 			},
 		})
 	end,

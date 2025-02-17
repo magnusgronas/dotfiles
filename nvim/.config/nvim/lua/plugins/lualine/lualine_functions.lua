@@ -1,7 +1,7 @@
 local M = {}
 
 M.hide = function()
-	return vim.fn.winwidth(0) > 100
+	return vim.fn.winwidth(0) > 65
 end
 
 M.lsp = function()
@@ -20,6 +20,14 @@ M.lsp = function()
 	end
 
 	return client_names[1]
+end
+
+M.space = function()
+	return " "
+end
+
+M.close = function()
+	return "x"
 end
 
 return M
