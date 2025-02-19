@@ -1,121 +1,61 @@
 return {
 	{
-		"hrsh7th/cmp-nvim-lsp",
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			{
-				"L3MON4D3/LuaSnip",
-				version = "v2.*",
-				build = "make install_jsregexp",
+		"saghen/blink.cmp",
+		-- optional: provides snippets for the snippet source
+		dependencies = "rafamadriz/friendly-snippets",
+
+		version = "*",
+
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			-- 'default' for mappings similar to built-in completion
+			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+			-- See the full "keymap" documentation for information on defining your own keymap.
+			keymap = {
+				preset = "default",
+				["<Tab>"] = { "select_and_accept", "fallback" },
+				["<C-j>"] = { "select_next", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
+				["<C-c>"] = { "cancel", "fallback" },
+				["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+				["<C-l>"] = { "snippet_forward", "fallback" },
+				["<C-h>"] = { "snippet_backward", "fallback" },
 			},
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
-			"onsails/lspkind.nvim",
-			{
-				"hrsh7th/cmp-cmdline",
-				config = function()
-					local cmp = require("cmp")
-					cmp.setup.cmdline(":", {
-						mapping = cmp.mapping.preset.cmdline(),
-						sources = cmp.config.sources({
-							{ name = "path" },
-						}, {
-							{
-								name = "cmdline",
-								option = {
-									ignore_cmds = { "Man", "!" },
-								},
-							},
-						}),
-					})
-				end,
+
+			appearance = {
+				-- Sets the fallback highlight groups to nvim-cmp's highlight groups
+				-- Useful for when your theme doesn't support blink.cmp
+				-- Will be removed in a future release
+				use_nvim_cmp_as_default = true,
+				-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+				-- Adjusts spacing to ensure icons are aligned
+				nerd_font_variant = "mono",
+			},
+
+			completion = {
+				-- menu = {
+				-- 	draw = {
+				-- 		columns = {
+				-- 			{ "label", "label_description", gap = 1 },
+				-- 			{ "kind_icon", gap = 1, "kind", "source_name" },
+				-- 		},
+				-- 	},
+				-- },
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 200,
+				},
+				ghost_text = { enabled = true },
+			},
+
+			-- Default list of enabled providers defined so that you can extend it
+			-- elsewhere in your config, without redefining it, due to `opts_extend`
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
 			},
 		},
-		config = function()
-			local cmp = require("cmp")
-			local luasnip = require("luasnip")
-			local lspkind = require("lspkind")
-
-			require("luasnip.loaders.from_vscode").lazy_load()
-
-			cmp.setup({
-				completion = {
-					completeopt = "menu,menuone,preview,noselect",
-				},
-
-				snippet = {
-					expand = function(args)
-						luasnip.lsp_expand(args.body)
-					end,
-				},
-
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
-
-				experimental = {
-					ghost_text = true,
-				},
-
-				mapping = cmp.mapping.preset.insert({
-					vim.api.nvim_set_keymap("i", "<C-k>", "", { noremap = true, silent = true }),
-					vim.api.nvim_set_keymap("i", "<C-j>", "", { noremap = true, silent = true }),
-
-					["<C-k>"] = cmp.mapping.select_prev_item(),
-					["<C-j>"] = cmp.mapping.select_next_item(),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-				}),
-
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" }, -- For luasnip users.
-					{ name = "buffer" },
-					{ name = "path" },
-				}),
-
-				---@diagnostic disable-next-line: missing-fields
-				formatting = {
-					format = lspkind.cmp_format({
-						maxwidth = 50,
-						ellipsis_char = "...",
-					}),
-				},
-			})
-
-			local s = luasnip.snippet
-			local t = luasnip.text_node
-			local i = luasnip.insert_node
-
-			luasnip.add_snippets("markdown", {
-				s("eq", {
-					t("$$"),
-					i(1, "equation"),
-					t("$$"),
-				}),
-			})
-
-			-- Keymaps for jumping to next param in snippet
-			vim.keymap.set({ "i", "s" }, "<C-l>", function()
-				if luasnip.expand_or_jumpable() then
-					luasnip.expand_or_jump()
-				end
-			end, { silent = true })
-
-			vim.keymap.set({ "i", "s" }, "<C-h>", function()
-				if luasnip.jumpable(-1) then
-					luasnip.jump(-1)
-				end
-			end, { silent = true })
-		end,
+		opts_extend = { "sources.default" },
 	},
 }

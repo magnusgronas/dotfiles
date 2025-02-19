@@ -14,6 +14,7 @@ return {
 				"stylua",
 				"eslint_d",
 				"shfmt",
+				"csharpier",
 			},
 			-- auto-install configured formatters & linters (with null-ls)
 			automatic_installation = true,
@@ -29,6 +30,7 @@ return {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettierd,
 				require("none-ls.diagnostics.eslint"),
+				null_ls.builtins.formatting.csharpier,
 			},
 
 			on_attach = function(client, bufnr)
