@@ -47,7 +47,7 @@ return {
 
 		dap.adapters.coreclr = {
 			type = "executable",
-			command = "/home/magnus/.local/share/netcoredbg/netcoredbg",
+			command = "/home/magnus/.local/share/nvim/mason/bin/netcoredbg",
 			args = { "--interpreter=vscode" },
 		}
 
