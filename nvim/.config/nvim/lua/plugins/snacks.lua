@@ -9,7 +9,7 @@ return {
 	opts = {
 		notifier = {
 			enabled = true,
-			style = "compact",
+			style = "fancy",
 		},
 		dashboard = require("plugins.snacks.dashboard"),
 		zen = require("plugins.snacks.zen"),

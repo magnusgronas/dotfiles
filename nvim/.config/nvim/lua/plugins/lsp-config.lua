@@ -41,7 +41,6 @@ return {
 						"emmet_ls",
 						"hyprls",
 						"biome",
-						"jdtls",
 					},
 					automatic_installation = true,
 				})
@@ -60,8 +59,6 @@ return {
 			local mason_lspconfig = require("mason-lspconfig")
 
 			local lspconfig = require("lspconfig")
-
-			local telescope = require("telescope.builtin")
 
 			local keymap = vim.keymap.set
 
@@ -84,9 +81,13 @@ return {
 				end,
 			})
 
+<<<<<<< HEAD
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local pid = vim.fn.getpid()
 			local omnisharp_bin = "/home/magnus/.local/share/nvim/mason/bin/omnisharp"
+=======
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+>>>>>>> blinkcmp
 
 			mason_lspconfig.setup_handlers({
 				function(server_name)

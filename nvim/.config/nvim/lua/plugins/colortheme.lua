@@ -6,7 +6,6 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			integrations = {
-				cmp = true,
 				dap = true,
 				dap_ui = true,
 				gitsigns = true,
@@ -14,6 +13,7 @@ return {
 				render_markdown = true,
 				snacks = true,
 				which_key = true,
+				blink_cmp = true,
 			},
 		})
 		vim.cmd.colorscheme("catppuccin-mocha")

@@ -20,3 +20,6 @@ hl(0, "SnacksPickerPreviewTitle", { bg = "#a6e3a1", fg = "#4c4f69" })
 
 -- Lualine
 hl(0, "LualineDiff", { fg = "#6e738d" })
+
+-- Blink-cmp
+hl(0, "BlinkCmpGhostText", { fg = "#6e738d" })

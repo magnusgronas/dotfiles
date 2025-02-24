@@ -26,11 +26,11 @@ map("<leader>fr", function()
 end, { desc = "Recent Files" })
 
 map("<leader>:", function()
-	Snacks.picker.command_history()
+	Snacks.picker.command_history({ layout = { preset = "ivy", preview = false } })
 end, { desc = "Command History" })
 
 map("<leader>n", function()
-	Snacks.picker.notifications()
+	Snacks.picker.notifications({ layout = "vscode" })
 end, { desc = "Notification History" })
 
 map("<leader>fd", function()
