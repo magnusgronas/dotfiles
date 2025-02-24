@@ -45,6 +45,23 @@ return {
 			},
 		}
 
+		dap.adapters.coreclr = {
+			type = "executable",
+			command = "/home/magnus/.local/share/netcoredbg/netcoredbg",
+			args = { "--interpreter=vscode" },
+		}
+
+		dap.configurations.cs = {
+			{
+				type = "coreclr",
+				name = "launch - netcoredbg",
+				request = "launch",
+				program = function()
+					return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
+				end,
+			},
+		}
+
 		-- Keymaps
 		local keymap = vim.keymap.set
 		keymap({ "n", "v" }, "<leader>db", dap.toggle_breakpoint, { silent = true, desc = "Toggle Breakpoint" })

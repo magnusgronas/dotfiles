@@ -85,11 +85,19 @@ return {
 			})
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local pid = vim.fn.getpid()
+			local omnisharp_bin = "/home/magnus/.local/share/nvim/mason/bin/omnisharp"
 
 			mason_lspconfig.setup_handlers({
 				function(server_name)
 					lspconfig[server_name].setup({
 						capabilities = capabilities,
+					})
+				end,
+				["omnisharp"] = function()
+					lspconfig["omnisharp"].setup({
+						capabilities = capabilities,
+						cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
 					})
 				end,
 				["clangd"] = function()
