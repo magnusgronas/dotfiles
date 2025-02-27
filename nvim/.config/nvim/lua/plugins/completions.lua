@@ -1,10 +1,14 @@
 return {
 	{
 		"saghen/blink.cmp",
-		-- optional: provides snippets for the snippet source
-		dependencies = "rafamadriz/friendly-snippets",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"onsails/lspkind.nvim",
+			"xzbdmw/colorful-menu.nvim",
+		},
 
 		version = "*",
+		Event = "InsertEnter",
 
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
@@ -32,22 +36,104 @@ return {
 				-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				-- Adjusts spacing to ensure icons are aligned
 				nerd_font_variant = "mono",
+				kind_icons = {
+					Text = "",
+					Method = "󰆧",
+					Function = "󰊕",
+					Constructor = "",
+
+					Field = "󰜢",
+					Variable = "󰀫",
+					Property = "󰜢",
+
+					Class = "󰠱",
+					Interface = "",
+					Struct = "󰙅",
+					Module = "",
+
+					Unit = "",
+					Value = "󰎠",
+					Enum = "",
+					EnumMember = "",
+
+					Keyword = "󰌋",
+					Constant = "󰏿",
+
+					Snippet = "",
+					Color = "󰏘",
+					File = "󰈙",
+					Reference = "󰈇",
+					Folder = "󰉋",
+					Event = "󱐋",
+					Operator = "",
+					TypeParameter = "",
+
+					Table = "",
+					Object = "󰅩",
+					Tag = "",
+					Array = "[]",
+					Boolean = "",
+					Number = "",
+					Null = "󰟢",
+					String = "󰉿",
+				},
 			},
 
+			-- completion = {
+			-- 	menu = {
+			-- 		border = "rounded",
+			-- 		draw = {
+			-- 			columns = {
+			-- 				{ "kind_icon", "label", "label_description", gap = 2 },
+			-- 				{ gap = 2, "kind" },
+			-- 			},
+			-- 			components = {
+			-- 				kind_icon = {
+			-- 					ellipsis = false,
+			-- 					text = function(ctx)
+			-- 						local lspkind = require("lspkind")
+			-- 						local icon = ctx.kind_icon
+			-- 						if vim.tbl_contains({ "Path" }, ctx.source_name) then
+			-- 							local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+			-- 							if dev_icon then
+			-- 								icon = dev_icon
+			-- 							end
+			-- 						else
+			-- 							icon = lspkind.symbolic(ctx.kind, {
+			-- 								mode = "symbol",
+			-- 							})
+			-- 						end
+			--
+			-- 						return icon .. ctx.icon_gap
+			-- 					end,
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
 			completion = {
-				-- menu = {
-				-- 	draw = {
-				-- 		columns = {
-				-- 			{ "label", "label_description", gap = 1 },
-				-- 			{ "kind_icon", gap = 1, "kind", "source_name" },
-				-- 		},
-				-- 	},
-				-- },
-				documentation = {
-					auto_show = true,
-					auto_show_delay_ms = 200,
+				menu = {
+					scrollbar = false,
+					border = "rounded",
+					draw = {
+						-- We don't need label_description now because label and label_description are already
+						-- combined together in label by colorful-menu.nvim.
+						columns = {
+							{ "label", gap = 2 },
+							{ "kind_icon", gap = 2, "kind" },
+						},
+						components = {
+							label = {
+								text = function(ctx)
+									return require("colorful-menu").blink_components_text(ctx)
+								end,
+								highlight = function(ctx)
+									return require("colorful-menu").blink_components_highlight(ctx)
+								end,
+							},
+						},
+					},
 				},
-				ghost_text = { enabled = true },
 			},
 
 			-- Default list of enabled providers defined so that you can extend it

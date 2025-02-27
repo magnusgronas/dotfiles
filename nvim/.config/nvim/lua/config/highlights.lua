@@ -19,7 +19,9 @@ hl(0, "SnacksPickerListTitle", { bg = "#f2cdcd", fg = "#4c4f69" })
 hl(0, "SnacksPickerPreviewTitle", { bg = "#a6e3a1", fg = "#4c4f69" })
 
 -- Lualine
-hl(0, "LualineDiff", { fg = "#6e738d" })
+hl(0, "LualineDiff", { fg = "#6c7086" })
 
 -- Blink-cmp
-hl(0, "BlinkCmpGhostText", { fg = "#6e738d" })
+hl(0, "BlinkCmpGhostText", { fg = "#6c7086" })
+hl(0, "BlinkCmpMenu", { bg = "#1e1e2e" })
+hl(0, "BlinkCmpMenuBorder", { bg = "#1e1e2e", fg = "#313244" })

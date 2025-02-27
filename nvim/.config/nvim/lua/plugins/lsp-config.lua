@@ -81,10 +81,11 @@ return {
 				end,
 			})
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+			-- omnisharp setup
 			local pid = vim.fn.getpid()
 			local omnisharp_bin = "/home/magnus/.local/share/nvim/mason/bin/omnisharp"
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			mason_lspconfig.setup_handlers({
 				function(server_name)
