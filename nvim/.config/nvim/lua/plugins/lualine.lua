@@ -21,7 +21,7 @@ return {
 					{
 						"mode",
 						fmt = function(str)
-							return str:sub(1, 1)
+							return str:sub(1, 3)
 						end,
 					},
 				},
@@ -57,9 +57,24 @@ return {
 				},
 				lualine_x = {
 					{
+						require("noice").api.status.search.get,
+						cond = require("noice").api.status.search.has or util.hide,
+						color = { fg = "#6c7086" },
+					},
+					{
+						require("noice").api.status.mode.get,
+						cond = require("noice").api.status.mode.has,
+						color = { fg = "#f2cdcd" },
+					},
+					{
 						"diagnostics",
 						update_in_insert = true,
 						cond = util.hide,
+					},
+					{
+						require("noice").api.status.command.get,
+						cond = require("noice").api.status.command.has,
+						color = { fg = "#6c7086" },
 					},
 					{
 						lazy.updates,
@@ -68,7 +83,7 @@ return {
 					},
 					{
 						util.lsp,
-						color = { fg = "#6e738d", bg = "#1E1E2E" },
+						color = { fg = "#6c7086", bg = "#1E1E2E" },
 						cond = util.hide,
 					},
 				},

@@ -11,22 +11,12 @@ return {
 			enabled = true,
 			style = "fancy",
 		},
+
 		dashboard = require("plugins.snacks.dashboard"),
 		zen = require("plugins.snacks.zen"),
 		indent = require("plugins.snacks.indent"),
 		picker = require("plugins.snacks.picker"),
-		-- input = {
-		-- 	icon = " ",
-		-- 	icon_hl = "SnacksInputIcon",
-		-- 	icon_pos = "left",
-		-- 	prompt_pos = "title",
-		-- 	win = {
-		-- 		relative = "cursor",
-		-- 		width = "40",
-		-- 		border = "none",
-		-- 	},
-		-- 	expand = true,
-		-- },
+
 		statuscolumn = {
 			left = { "mark", "sign" }, -- priority of signs on the left (high to low)
 			right = { "fold", "git" }, -- priority of signs on the right (high to low)

@@ -2,11 +2,6 @@ return {
 	{
 		"williamboman/mason-nvim-dap.nvim",
 		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("mason-nvim-dap").setup({
-				ensure_installed = { "java-debug-adapter", "java-test", "codelldb" },
-			})
-		end,
 	},
 	{
 		"williamboman/mason.nvim",
@@ -40,7 +35,6 @@ return {
 						"lua_ls",
 						"emmet_ls",
 						"hyprls",
-						"biome",
 					},
 					automatic_installation = true,
 				})
@@ -51,7 +45,7 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "VeryLazy", "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
+			"Saghen/blink.cmp",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
 			{ "folke/lazydev.nvim", opts = {} },
 		},

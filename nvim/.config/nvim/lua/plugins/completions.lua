@@ -1,9 +1,9 @@
 return {
+
 	{
 		"saghen/blink.cmp",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
-			"onsails/lspkind.nvim",
 			"xzbdmw/colorful-menu.nvim",
 		},
 
@@ -79,48 +79,28 @@ return {
 				},
 			},
 
-			-- completion = {
-			-- 	menu = {
-			-- 		border = "rounded",
-			-- 		draw = {
-			-- 			columns = {
-			-- 				{ "kind_icon", "label", "label_description", gap = 2 },
-			-- 				{ gap = 2, "kind" },
-			-- 			},
-			-- 			components = {
-			-- 				kind_icon = {
-			-- 					ellipsis = false,
-			-- 					text = function(ctx)
-			-- 						local lspkind = require("lspkind")
-			-- 						local icon = ctx.kind_icon
-			-- 						if vim.tbl_contains({ "Path" }, ctx.source_name) then
-			-- 							local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-			-- 							if dev_icon then
-			-- 								icon = dev_icon
-			-- 							end
-			-- 						else
-			-- 							icon = lspkind.symbolic(ctx.kind, {
-			-- 								mode = "symbol",
-			-- 							})
-			-- 						end
-			--
-			-- 						return icon .. ctx.icon_gap
-			-- 					end,
-			-- 				},
-			-- 			},
-			-- 		},
-			-- 	},
-			-- },
 			completion = {
+				accept = {
+					auto_brackets = {
+						enabled = true,
+					},
+				},
+				list = {
+					selection = {
+						preselect = true,
+						auto_insert = true,
+					},
+				},
 				menu = {
 					scrollbar = false,
 					border = "rounded",
+
 					draw = {
-						-- We don't need label_description now because label and label_description are already
-						-- combined together in label by colorful-menu.nvim.
+						padding = 2,
+
 						columns = {
-							{ "label", gap = 2 },
-							{ "kind_icon", gap = 2, "kind" },
+							{ "kind_icon", "label", gap = 2 },
+							{ gap = 2, "kind" },
 						},
 						components = {
 							label = {
@@ -133,6 +113,32 @@ return {
 							},
 						},
 					},
+				},
+				documentation = {
+					auto_show = true,
+					window = {
+						border = "rounded",
+					},
+				},
+				ghost_text = {
+					enabled = true,
+					show_without_selection = true,
+				},
+			},
+
+			fuzzy = {
+				implementation = "rust",
+			},
+
+			signature = {
+				enabled = true,
+				trigger = {
+					enabled = true,
+					show_on_insert = true,
+					show_on_keyword = true,
+				},
+				window = {
+					border = "rounded",
 				},
 			},
 
