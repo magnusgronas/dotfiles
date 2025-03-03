@@ -1,47 +1,5 @@
 return {
 	{
-		"williamboman/mason-nvim-dap.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-	},
-	{
-		"williamboman/mason.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			event = "VeryLazy",
-			config = function()
-				local mason = require("mason")
-				local mason_lspconfig = require("mason-lspconfig")
-				mason.setup({
-					ui = {
-						icons = {
-							package_installed = "",
-							package_pending = "",
-							package_uninstalled = "",
-						},
-					},
-					ensure_installed = {
-						"clangd",
-						"clang-format",
-						"codelldb",
-					},
-				})
-				mason_lspconfig.setup({
-					ensure_installed = {
-						"ts_ls",
-						"html",
-						"cssls",
-						"clangd",
-						"lua_ls",
-						"emmet_ls",
-						"hyprls",
-					},
-					automatic_installation = true,
-				})
-			end,
-		},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		event = { "VeryLazy", "BufReadPre", "BufNewFile" },
 		dependencies = {
@@ -77,9 +35,7 @@ return {
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			-- omnisharp setup
-			local pid = vim.fn.getpid()
-			local omnisharp_bin = "/home/magnus/.local/share/nvim/mason/bin/omnisharp"
+			-- local util = require("lspconfig.util")
 
 			mason_lspconfig.setup_handlers({
 				function(server_name)
@@ -87,12 +43,20 @@ return {
 						capabilities = capabilities,
 					})
 				end,
-				["omnisharp"] = function()
-					lspconfig["omnisharp"].setup({
-						capabilities = capabilities,
-						cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
-					})
-				end,
+				-- ["csharp_ls"] = function()
+				--   print("Setting up csharp_ls...")
+				--   lspconfig["csharp_ls"].setup({
+				--     capabilities = capabilities,
+				--     cmd = { "csharp-ls" },
+				--     root_dir = function(fname)
+				--       return util.root_pattern("*.sln")(fname) or util.root_pattern("*.csproj")(fname)
+				--     end,
+				--     filetypes = { "cs" },
+				--     init_options = {
+				--       AutomaticWorkspaceInit = true,
+				--     },
+				--   })
+				-- end,
 				["clangd"] = function()
 					lspconfig["clangd"].setup({
 						capabilities = capabilities,
