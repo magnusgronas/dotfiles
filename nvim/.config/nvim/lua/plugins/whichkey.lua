@@ -5,7 +5,7 @@ return {
 		{
 			"<leader>?",
 			function()
-				require("which-key").show({ global = false })
+				require("which-key").show({ global = true })
 			end,
 			desc = "Buffer Local Keymaps (which-key)",
 		},
@@ -17,11 +17,11 @@ return {
 	config = function()
 		local which_key = require("which-key")
 		which_key.add({
-			{ "<leader>f", group = "find" },
-			{ "<leader>s", group = "splits" },
-			{ "<leader>t", group = "diagnostics" },
-			{ "<leader>d", group = "debug" },
-			{ "<leader>c", group = "code" },
+			{ "<leader>f", group = "Find" },
+			{ "<leader>s", group = "Splits" },
+			{ "<leader>t", group = "Diagnostics" },
+			{ "<leader>d", group = "Debug" },
+			{ "<leader>c", group = "Code" },
 		})
 	end,
 }

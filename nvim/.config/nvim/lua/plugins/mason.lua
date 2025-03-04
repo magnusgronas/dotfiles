@@ -1,29 +1,30 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		event = "VeryLazy",
+		lazy = false,
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
-			event = "VeryLazy",
+			"neovim/nvim-lspconfig",
 		},
-
 		config = function()
 			local mason = require("mason")
 			local mason_lspconfig = require("mason-lspconfig")
+
 			mason.setup({
 				ui = {
 					icons = {
-						package_installed = "",
-						package_pending = "",
-						package_uninstalled = "",
+						package_installed = "",
+						package_pending = ">",
+						package_uninstalled = "",
 					},
 				},
-				-- formatters
+				-- formatters and tools
 				ensure_installed = {
 					"clang-format",
 					"codelldb",
 				},
 			})
+
 			mason_lspconfig.setup({
 				-- lsp servers
 				ensure_installed = {
@@ -44,6 +45,10 @@ return {
 	{
 		"williamboman/mason-nvim-dap.nvim",
 		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"mfussenegger/nvim-dap",
+		},
 		config = function()
 			require("mason-nvim-dap").setup({
 				-- debug adapters

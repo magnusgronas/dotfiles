@@ -18,8 +18,6 @@ hl(0, "SnacksPickerInput", { bg = "#11111b", fg = "#cdd6f4" })
 hl(0, "SnacksPickerListTitle", { bg = "#f2cdcd", fg = "#4c4f69" })
 hl(0, "SnacksPickerPreviewTitle", { bg = "#a6e3a1", fg = "#4c4f69" })
 
--- Snacks indent
-
 -- Lualine
 hl(0, "LualineDiff", { fg = "#6c7086" })
 
@@ -32,3 +30,5 @@ hl(0, "BlinkCmpSignatureHelpBorder", { bg = "#1e1e2e", fg = "#313244" })
 hl(0, "BlinkCmpDoc", { bg = "#1e1e2e" })
 hl(0, "BlinkCmpDocBorder", { bg = "#1e1e2e", fg = "#313244" })
 hl(0, "BlinkCmpDocSeparator", { bg = "#1e1e2e", fg = "#313244" })
+
+-- Lsp hover doc

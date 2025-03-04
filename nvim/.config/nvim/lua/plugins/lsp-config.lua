@@ -1,41 +1,35 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		event = { "VeryLazy", "BufReadPre", "BufNewFile" },
+		event = "VeryLazy",
 		dependencies = {
 			"Saghen/blink.cmp",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
 			{ "folke/lazydev.nvim", opts = {} },
+			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
 			local mason_lspconfig = require("mason-lspconfig")
-
 			local lspconfig = require("lspconfig")
 
-			local keymap = vim.keymap.set
-
+			-- Create LSP attach autocmd
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-					local opts = { buffer = ev.buf, silent = true }
-					-- LSP keymaps
-					keymap("n", "K", vim.lsp.buf.hover, opts)
-					keymap("n", "gD", vim.lsp.buf.declaration, opts)
-					opts.desc = "Lsp rename"
-					keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
-					opts.desc = "Code actions"
-					keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-
-					-- opts.desc = "Lsp references"
-					-- keymap("n", "<leader>cr", telescope.lsp_references, opts)
-					-- opts.desc = "Lsp implementations"
-					-- keymap("n", "<leader>ci", telescope.lsp_implementations, opts)
+					local wk = require("which-key")
+					wk.add({
+						{ "K", vim.lsp.buf.hover, desc = "Show Hover Documentation" },
+						{ "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+						{ "<leader>rn", vim.lsp.buf.rename, desc = "Lsp Rename" },
+						{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code Actions" },
+					}, {
+						mode = "n",
+						buffer = ev.buf,
+					})
 				end,
 			})
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-			-- local util = require("lspconfig.util")
 
 			mason_lspconfig.setup_handlers({
 				function(server_name)
@@ -43,20 +37,6 @@ return {
 						capabilities = capabilities,
 					})
 				end,
-				-- ["csharp_ls"] = function()
-				--   print("Setting up csharp_ls...")
-				--   lspconfig["csharp_ls"].setup({
-				--     capabilities = capabilities,
-				--     cmd = { "csharp-ls" },
-				--     root_dir = function(fname)
-				--       return util.root_pattern("*.sln")(fname) or util.root_pattern("*.csproj")(fname)
-				--     end,
-				--     filetypes = { "cs" },
-				--     init_options = {
-				--       AutomaticWorkspaceInit = true,
-				--     },
-				--   })
-				-- end,
 				["clangd"] = function()
 					lspconfig["clangd"].setup({
 						capabilities = capabilities,
@@ -84,7 +64,7 @@ return {
 					lspconfig["lua_ls"].setup({
 						capabilities = capabilities,
 						settings = {
-							lua = {
+							Lua = {
 								diagnostics = {
 									globals = { "vim" },
 								},
