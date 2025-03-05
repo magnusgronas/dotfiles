@@ -6,7 +6,6 @@ return {
 			"rafamadriz/friendly-snippets",
 			"xzbdmw/colorful-menu.nvim",
 		},
-
 		version = "*",
 		Event = "InsertEnter",
 
@@ -92,15 +91,15 @@ return {
 					},
 				},
 				menu = {
+					max_height = 20,
+					min_width = 20,
 					scrollbar = false,
 					border = "rounded",
-
 					draw = {
 						padding = 2,
-
 						columns = {
-							{ "kind_icon", "label", gap = 2 },
-							{ gap = 2, "kind" },
+							{ "kind_icon" },
+							{ "label", gap = 2, "kind" },
 						},
 						components = {
 							label = {
