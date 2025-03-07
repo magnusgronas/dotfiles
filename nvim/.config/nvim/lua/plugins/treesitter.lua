@@ -1,10 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPre", "BufNewFile" },
+	-- event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
-	dependencies = {
-		"windwp/nvim-ts-autotag",
-	},
 	config = function()
 		local treesitter = require("nvim-treesitter.configs")
 		---@diagnostic disable-next-line: missing-fields
@@ -12,12 +9,14 @@ return {
 			ensure_installed = {
 				"c",
 				"cpp",
+				"cs",
 				"bash",
 				"lua",
 				"vim",
 				"vimdoc",
 				"javascript",
 				"html",
+				"css",
 				"java",
 				"json",
 				"latex",
@@ -30,11 +29,9 @@ return {
 			},
 			auto_install = true,
 			sync_install = false,
-			-- highlight = { enable = true },
+			highlight = { enable = true },
 			indent = { enable = true },
-			autotag = {
-				enable = true,
-			},
+			autotag = { enable = true },
 		})
 	end,
 }
