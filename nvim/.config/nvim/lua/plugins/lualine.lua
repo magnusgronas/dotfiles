@@ -1,7 +1,7 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	event = "VeryLazy",
 	config = function()
 		local lazy = require("lazy.status")
 		local util = require("plugins.lualine.lualine_functions")

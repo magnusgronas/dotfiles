@@ -1,14 +1,9 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		lazy = false,
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			"neovim/nvim-lspconfig",
-		},
+		cmd = "Mason",
 		config = function()
 			local mason = require("mason")
-			local mason_lspconfig = require("mason-lspconfig")
 
 			mason.setup({
 				ui = {
@@ -23,22 +18,6 @@ return {
 					"clang-format",
 					"codelldb",
 				},
-			})
-
-			mason_lspconfig.setup({
-				-- lsp servers
-				ensure_installed = {
-					"clangd",
-					"csharp_ls",
-					"cssls",
-					"emmet_ls",
-					"html",
-					"hyprls",
-					"jdtls",
-					"lua_ls",
-					"ts_ls",
-				},
-				automatic_installation = true,
 			})
 		end,
 	},

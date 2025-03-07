@@ -7,7 +7,7 @@ return {
 			"xzbdmw/colorful-menu.nvim",
 		},
 		version = "*",
-		Event = "InsertEnter",
+		event = "InsertEnter",
 
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config

@@ -6,7 +6,7 @@ return {
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
-		ft = { "markdown" },
+		ft = "markdown",
 		keys = {
 			{ "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", desc = "Markdown Preview" },
 		},
@@ -43,8 +43,7 @@ return {
 	-- },
 	{
 		"HakonHarnes/img-clip.nvim",
-		ft = { "markdown" },
-		event = "VeryLazy",
+		ft = "markdown",
 		opts = {
 			-- add options here
 			-- or leave it empty to use the default settings

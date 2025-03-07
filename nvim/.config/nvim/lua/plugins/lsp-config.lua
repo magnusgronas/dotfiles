@@ -1,11 +1,10 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"Saghen/blink.cmp",
 			{ "antosha417/nvim-lsp-file-operations", config = true },
-			{ "folke/lazydev.nvim", opts = {} },
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
@@ -75,6 +74,22 @@ return {
 						},
 					})
 				end,
+			})
+
+			mason_lspconfig.setup({
+				-- lsp servers
+				ensure_installed = {
+					"clangd",
+					"csharp_ls",
+					"cssls",
+					"emmet_ls",
+					"html",
+					"hyprls",
+					"jdtls",
+					"lua_ls",
+					"ts_ls",
+				},
+				automatic_installation = true,
 			})
 		end,
 	},
