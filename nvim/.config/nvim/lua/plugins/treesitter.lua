@@ -20,6 +20,7 @@ return {
         "markdown",
         "markdown_inline",
         "regex",
+        "toml",
         "vim",
         "vimdoc",
         vim.filetype.add({
