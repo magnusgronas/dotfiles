@@ -1,14 +1,24 @@
 return {
-	"folke/trouble.nvim",
-	opts = {},
-	cmd = "Trouble",
-	dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },
-	keys = {
-		{ "<leader>tx", "<cmd>Trouble<CR>", desc = "Diagnostics" },
-		{ "<leader>tw", "<cmd>Trouble workspace_diagnostics<CR>", desc = "Workspace diagnostics" },
-		{ "<leader>td", "<cmd>Trouble document_diagnostics<CR>", desc = "File diagnostics" },
-		{ "<leader>tq", "<cmd>Trouble quickfix<CR>", desc = "Quick fix list" },
-		{ "<leader>tl", "<cmd>Trouble loclist<CR>", desc = "Trouble location list" },
-		{ "<leader>tl", "<cmd>Trouble loclist<CR>", desc = "Trouble location list" },
-	},
+  "folke/trouble.nvim",
+  cmd = "Trouble",
+  dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },
+  opts = {
+    modes = {
+      lsp = {
+        win = { position = "right" },
+      },
+    },
+  },
+  keys = {
+    { "<leader>tx", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Diagnostics (Trouble)" },
+    { "<leader>tX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
+    { "<leader>ts", "<cmd>Trouble symbols toggle<cr>",                  desc = "Symbols (Trouble)" },
+    {
+      "<leader>tS",
+      "<cmd>Trouble lsp toggle<cr>",
+      desc = "LSP references/definitions/... (Trouble)",
+    },
+    { "<leader>tL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+    { "<leader>tQ", "<cmd>Trouble qflist toggle<cr>",  desc = "Quickfix List (Trouble)" },
+  },
 }

@@ -30,7 +30,11 @@ map("<leader>:", function()
 end, { desc = "Command History" })
 
 map("<leader>n", function()
-	Snacks.picker.notifications({ layout = "vscode" })
+	if Snacks.config.picker and Snacks.config.picker.enabled then
+		Snacks.picker.notifications({ layout = { preset = "vscode" } })
+	else
+		Snacks.notifier.show_history()
+	end
 end, { desc = "Notification History" })
 
 map("<leader>fd", function()

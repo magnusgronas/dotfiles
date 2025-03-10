@@ -1,7 +1,8 @@
 return {
-	"echasnovski/mini.ai",
-	version = "*",
-	config = function()
-		require("mini.ai").setup()
-	end,
+  "echasnovski/mini.ai",
+  event = { "BufReadPre", "BufNewFile" },
+  version = "*",
+  config = function()
+    require("mini.ai").setup()
+  end,
 }
