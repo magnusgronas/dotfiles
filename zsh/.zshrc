@@ -8,7 +8,7 @@ if [[ "$(uname -r)" == *WSL* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
   # Java
-  export JAVA_HOME=/home/linuxbrew/.linuxbrew/Cellar/numactl/openjdk/
+  export JAVA_HOME=/home/linuxbrew/.linuxbrew/opt/openjdk
   # export JAVA_HOME=/home/linuxbrew/.linuxbrew/opt/openjdk@17
   export PATH=$JAVA_HOME/bin:$PATH
 

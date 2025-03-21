@@ -4,8 +4,15 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local lazy = require("lazy.status")
-		local util = require("plugins.lualine.lualine_functions")
 		local colors = require("plugins.lualine.lualine_colors")
+
+		local hide = function()
+			return vim.fn.winwidth(0) > 65
+		end
+
+		local space = function()
+			return " "
+		end
 
 		require("lualine").setup({
 
@@ -42,7 +49,7 @@ return {
 						"branch",
 						icon = "󰘬",
 						color = { fg = "#6e738d", bg = "#1E1E2E" },
-						cond = util.hide,
+						cond = hide,
 					},
 					{
 						"diff",
@@ -52,7 +59,7 @@ return {
 							modified = "LualineDiff",
 							removed = "LualineDiff",
 						},
-						cond = util.hide,
+						cond = hide,
 					},
 				},
 				lualine_x = {
@@ -69,7 +76,7 @@ return {
 					{
 						"diagnostics",
 						update_in_insert = true,
-						cond = util.hide,
+						cond = hide,
 					},
 					{
 						require("noice").api.status.command.get,
@@ -78,13 +85,18 @@ return {
 					},
 					{
 						lazy.updates,
-						cond = lazy.has_updates or util.hide,
+						cond = lazy.has_updates or hide,
 						color = { fg = "#fab387", bg = "#1E1E2E" },
 					},
 					{
-						util.lsp,
-						color = { fg = "#6c7086", bg = "#1E1E2E" },
-						cond = util.hide,
+						"lsp_status",
+						icon = "",
+						color = { fg = "#6c7086" },
+						symbols = {
+							done = "",
+							separator = " ",
+						},
+						ignore_lsp = { "null-ls" },
 					},
 				},
 				lualine_y = {
@@ -95,7 +107,7 @@ return {
 				},
 				lualine_z = {
 					{
-						util.space,
+						space,
 						padding = 0,
 					},
 					{
@@ -108,7 +120,7 @@ return {
 						padding = 0,
 					},
 					{
-						util.space,
+						space,
 						padding = 0,
 					},
 				},
@@ -121,33 +133,6 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-
-			-- tabline = {
-			-- 	lualine_a = {
-			-- 		{
-			-- 			"buffers",
-			-- 			symbols = {
-			-- 				alternate_file = "",
-			-- 			},
-			-- 			filetype_names = {
-			-- 				oil = "Oil",
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	lualine_b = {},
-			-- 	lualine_c = {},
-			-- 	lualine_x = {},
-			-- 	lualine_y = {},
-			-- 	lualine_z = {
-			-- 		{
-			-- 			util.close,
-			-- 			on_click = function()
-			-- 				vim.cmd([[:wq]])
-			-- 			end,
-			-- 			color = { bg = "#f38ba8" },
-			-- 		},
-			-- 	},
-			-- },
 		})
 	end,
 }

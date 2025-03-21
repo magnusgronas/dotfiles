@@ -14,7 +14,7 @@ return {
 				icon = "  >",
 				desc = "Find Files",
 				key = "f",
-				action = ":lua Snacks.dashboard.pick('files')",
+				action = ":lua Snacks.picker.files({exclude = { '*.class', 'target/**' }})",
 			},
 			{
 				icon = "  >",

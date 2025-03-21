@@ -10,7 +10,9 @@ end
 
 -- General mappings
 map("<leader>ff", function()
-	Snacks.picker.files()
+	Snacks.picker.files({
+		exclude = { "*.class", "target/**" },
+	})
 end, { desc = "Find Files" })
 
 map("<leader>fg", function()
