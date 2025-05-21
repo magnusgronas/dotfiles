@@ -1,20 +1,3 @@
-# Java
-export JAVA_HOME=/usr/lib/jvm/default
-export PATH=$JAVA_HOME/bin:$PATH
-
-# Make config work in WSL2
-if [[ "$(uname -r)" == *WSL* ]]; then
-  # Homebrew
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-  # Java
-  export JAVA_HOME=/home/linuxbrew/.linuxbrew/opt/openjdk
-  # export JAVA_HOME=/home/linuxbrew/.linuxbrew/opt/openjdk@17
-  export PATH=$JAVA_HOME/bin:$PATH
-
-fi
-
-
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -23,6 +6,10 @@ if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
+
+# Java
+export JAVA_HOME=/usr/lib/jvm/default
+export PATH=$JAVA_HOME/bin:$PATH
 
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
