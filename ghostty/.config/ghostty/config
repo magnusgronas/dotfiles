@@ -1,13 +1,11 @@
-title = "Ghostty"
-class = "Ghostty"
+theme = matugen.theme
 
-theme = catppuccin-mocha
-
-background-opacity = 1
+background-opacity = 0.8
 
 gtk-titlebar = false
-window-padding-x = 0,0
-window-padding-y = 0,0
+gtk-single-instance = true
+window-padding-x = 10
+window-padding-y = 10
 adjust-cell-height = 8
 # window-padding-balance = true
 # window-padding-color = extend
