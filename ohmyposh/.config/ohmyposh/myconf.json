@@ -70,7 +70,7 @@
             "{{if eq .Code 0}}p:primary{{end}}"
           ],
           "style": "plain",
-          "template": "󰘧 ",
+          "template": "󰘧",
           "type": "text",
           "properties": {
             "cache_duration": "none"
