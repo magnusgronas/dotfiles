@@ -1,0 +1,99 @@
+{
+  "console_title_template": "{{ .Shell }}",
+  "final_space": true,
+  "version": 3,
+  "blocks": [
+    {
+      "overflow": "hidden",
+      "type": "rprompt",
+      "segments": [
+        {
+          "background": "transparent",
+          "foreground": "p:time",
+          "style": "plain",
+          "template": "{{ div .Ms 1000 }}s",
+          "type": "executiontime",
+          "properties": {
+            "cache_duration": "none"
+          }
+        },
+        {
+          "foreground": "p:date",
+          "style": "plain",
+          "template": " {{ .CurrentDate | date .Format }} ",
+          "type": "time",
+          "properties": {
+            "cache_duration": "none"
+          }
+        }
+      ]
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "type": "prompt",
+      "segments": [
+        {
+          "foreground": "p:path",
+          "style": "plain",
+          "template": "{{ .Path }}",
+          "type": "path",
+          "properties": {
+            "cache_duration": "none",
+            "folder_icon": "󰉋",
+            "max_width": 0,
+            "style": "full"
+          }
+        },
+        {
+          "foreground": "p:git",
+          "style": "plain",
+          "template": " {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <p:git_status>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>",
+          "type": "git",
+          "properties": {
+            "branch_icon": "",
+            "cache_duration": "none",
+            "fetch_status": true
+          }
+        }
+      ]
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "type": "prompt",
+      "segments": [
+        {
+          "background": "transparent",
+          "foreground_templates": [
+            "{{if gt .Code 0}}p:error{{end}}",
+            "{{if eq .Code 0}}p:primary{{end}}"
+          ],
+          "style": "plain",
+          "template": "󰘧 ",
+          "type": "text",
+          "properties": {
+            "cache_duration": "none"
+          }
+        }
+      ]
+    }
+  ],
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground_templates": [
+      "{{if gt .Code 0}}p:error{{end}}",
+      "{{if eq .Code 0}}p:primary{{end}}"
+    ],
+    "template": "󰘧 "
+  },
+  "palette": {
+    "date": "#38393f",
+    "error": "#ffb4ab",
+    "git": "#38393f",
+    "git_status": "#192e60",
+    "path": "#b3c5ff",
+    "primary": "#495d92",
+    "time": "#e1bbdc"
+  }
+}

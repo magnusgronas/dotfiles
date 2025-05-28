@@ -1,41 +1,20 @@
-# console_title_template = '{{ .Shell }} in {{ .Folder }}'
 console_title_template = '{{ .Shell }}'
-# console_title_template = "{{.Folder}} :: {{.Shell}}"
 version = 3
 final_space = true
 
 [palette]
-  base = '#24273a'
-  blue = '#8aadf4'
-  crust = '#181926'
-  flamingo = '#f0c6c6'
-  green = '#a6da95'
-  lavender = '#b7bdf8'
-  mantle = '#1e2030'
-  maroon = '#ee99a0'
-  mauve = '#c6a0f6'
-  overlay0 = '#6e738d'
-  overlay1 = '#8087a2'
-  overlay2 = '#939ab7'
-  peach = '#f5a97f'
-  pink = '#f5bde6'
-  red = '#ed8796'
-  rosewater = '#f4dbd6'
-  sapphire = '#7dc4e4'
-  sky = '#91d7e3'
-  subtext0 = '#a5adcb'
-  subtext1 = '#b8c0e0'
-  surface0 = '#363a4f'
-  surface1 = '#494d64'
-  surface2 = '#5b6078'
-  teal = '#8bd5ca'
-  text = '#cad3f5'
-  yellow = '#eed49f'
+  git_status = '#c6a0f6'
+  git = '#6e738d'
+  error = '#ed8796'
+  primary = '#f4dbd6'
+  date = '#a5adcb'
+  path = '#cad3f5'
+  time = '#eed49f'
 
 [transient_prompt]
-  template = ' 󰘧 '
+  template = '󰘧 '
   background = 'transparent'
-  foreground_templates = ['{{if gt .Code 0}}p:red{{end}}', '{{if eq .Code 0}}p:rosewater{{end}}']
+  foreground_templates = ['{{if gt .Code 0}}p:error{{end}}', '{{if eq .Code 0}}p:primary{{end}}']
 
 [[blocks]]
   type = 'rprompt'
@@ -43,7 +22,7 @@ final_space = true
 
   [[blocks.segments]]
     template = '{{ div .Ms 1000 }}s'
-    foreground = 'p:yellow'
+    foreground = 'p:time'
     background = 'transparent'
     type = 'executiontime'
     style = 'plain'
@@ -53,7 +32,7 @@ final_space = true
 
   [[blocks.segments]]
     template = ' {{ .CurrentDate | date .Format }} '
-    foreground = 'p:subtext0'
+    foreground = 'p:date'
     type = 'time'
     style = 'plain'
 
@@ -66,28 +45,20 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    foreground = 'p:overlay1'
-    type = 'os'
-    template = ' {{.Icon}} '
-    style = 'plain'
-
-    [blocks.segments.properties]
-      cache_duration = 'none'
-
-  [[blocks.segments]]
-    foreground = 'p:text'
+    foreground = 'p:path'
     type = 'path'
     style = 'plain'
+    template = '{{ .Path }}'
 
     [blocks.segments.properties]
       cache_duration = 'none'
       folder_icon = '󰉋'
       max_width = 0
-      style = 'folder'
+      style = 'full'
 
   [[blocks.segments]]
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <p:mauve>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
-    foreground = 'p:overlay0'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <p:git_status>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    foreground = 'p:git'
     type = 'git'
     style = 'plain'
 
@@ -102,13 +73,13 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    template = ' 󰘧 ›'
+    template = '󰘧 '
     # ❯  󰘧 󰞷
     # ❯ ❭ 〉 › ❯ 
     background = 'transparent'
     type = 'text'
     style = 'plain'
-    foreground_templates = ['{{if gt .Code 0}}p:red{{end}}', '{{if eq .Code 0}}p:rosewater{{end}}']
+    foreground_templates = ['{{if gt .Code 0}}p:error{{end}}', '{{if eq .Code 0}}p:primary{{end}}']
 
     [blocks.segments.properties]
       cache_duration = 'none'
