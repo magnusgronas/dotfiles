@@ -1,0 +1,8 @@
+[palette]
+  git_status = '{{colors.tertiary.default.hex}}'
+  git = '{{colors.surface_bright.default.hex}}'
+  error = '{{colors.error.default.hex}}' 
+  primary = '{{colors.primary.default.hex}}'
+  date = '{{colors.outline.default.hex}}'
+  path = '{{colors.primary_container.default.hex}}'
+  time = '{{colors.inverse_primary.default.hex}}'

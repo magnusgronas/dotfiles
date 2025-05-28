@@ -1,0 +1,9 @@
+{
+  "date": "{{colors.surface_bright.default.hex}}",
+  "error": "{{colors.error.default.hex}}",
+  "git": "{{colors.surface_bright.default.hex}}",
+  "git_status": "{{colors.on_primary.default.hex}}",
+  "path": "{{colors.primary.default.hex}}",
+  "primary": "{{colors.inverse_primary.default.hex}}",
+  "time": "{{colors.tertiary.default.hex}}"
+}

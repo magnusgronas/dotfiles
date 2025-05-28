@@ -1,0 +1,16 @@
+[config.wallpaper]
+command = "hyprctl"
+arguments = ["hyprpaper","reload", ","]
+set = true
+
+[templates.ghostty]
+input_path = "./templates/ghostty.theme"
+output_path = "/home/magnus/.config/ghostty/themes/matugen.theme"
+
+[templates.ohmyposh]
+input_path = "./templates/ohmyposh.json"
+output_path = "/home/magnus/.config/ohmyposh/colors.json"
+post_hook = "jq -s '.[0] * {palette: .[1]}' ~/.config/ohmyposh/myconf.json ~/.config/ohmyposh/colors.json > /tmp/ohmyposh_temp.json && mv /tmp/ohmyposh_temp.json ~/.config/ohmyposh/myconf.json"
+
+
+
