@@ -12,5 +12,12 @@ input_path = "./templates/ohmyposh.json"
 output_path = "/home/magnus/.config/ohmyposh/colors.json"
 post_hook = "jq -s '.[0] * {palette: .[1]}' ~/.config/ohmyposh/myconf.json ~/.config/ohmyposh/colors.json > /tmp/ohmyposh_temp.json && mv /tmp/ohmyposh_temp.json ~/.config/ohmyposh/myconf.json"
 
+[templates.waybar]
+input_path = './templates/colors.css'
+output_path = '~/.config/waybar/matugen.css'
+post_hook = 'pkill -SIGUSR2 waybar'
 
-
+[templates.hyprland]
+input_path = './templates/colors.conf'
+output_path = '~/.config/hypr/colors.conf'
+post_hook = 'hyprctl reload'
