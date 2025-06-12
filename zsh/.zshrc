@@ -64,4 +64,4 @@ alias ll="eza --color=always --icons=always -l"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-export PATH=$PATH:/home/magnus/.spicetify
+export PATH="$HOME/.local/bin:$PATH"

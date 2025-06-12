@@ -38,9 +38,8 @@ tooltip label {
 
 #window {
   color: @primary;
-  border-radius: 10em;
   padding: 0;
-  margin: 0.4em 1em;
+  margin: 0.4em 0.8em;
 }
 
 #workspaces {
@@ -72,17 +71,17 @@ tooltip label {
 #workspaces button.active {
   background-color: @primary;
   color: @on_primary;
-  padding: 0.6em 1.6em;
+  padding: 0.6em 1.8em;
   margin: 0.2em 0.4em;
 }
 
 #workspaces button.active:nth-child(1) {
-  padding: 0.6em 1.6em;
+  padding: 0.6em 1.8em;
   margin: 0.2em 0.4em 0.2em 0.2em;
 }
 
 #workspaces button.active:nth-last-child(1) {
-  padding: 0.6em 1.6em;
+  padding: 0.6em 1.8em;
   margin: 0.2em 0.2em 0.2em 0.4em;
 }
 
@@ -110,6 +109,10 @@ tooltip label {
 
 #pulseaudio {
   font-size: 18px;
+}
+
+#pulseaudio.muted {
+  color: @error;
 }
 
 #custom-separator {
