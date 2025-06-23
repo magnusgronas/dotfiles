@@ -1,23 +1,89 @@
 configuration {
-	modes: "window,drun,run,ssh,emoji,wifi:iwdrofimenu";
-	font: "JetBrainsMono Nerd Font Medium 20";
+	modes: "window,drun,run,ssh";
+	font: "JetBrainsMono Nerd Font 16";
 	show-icons: true;
 	terminal: "ghostty";
 	icon-theme: "Papirus";
-	drun-display-format: "{icon} ｜ {name}";
-  //   ｜
-	display-window: "Windows";
-	display-drun: "Applications";
-  sort: true;
+	drun-display-format: "{icon} {name}";
+    display-drun: "Apps";
+}
+@theme "/dev/null"
+@import "./colors.rasi"
 
-  // keybindings
-  kb-accept-entry: "Return";
-  kb-remove-to-sol: "control+d";
-  kb-remove-to-eol: "";
-  kb-row-down: "control+j";
-  kb-row-up: "control+k";
-  kb-remove-char-forward: "Delete";
-
+* {
 }
 
-@theme "catppuccin-macchiato"
+window {
+    background-color: @surface-bright;
+    transparency: "real";
+    location: center;
+    width: 1000px;
+    height: 750px;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+mainbox {
+    background-color: transparent;
+    children: [inputbar, listview];
+    spacing: 10px;
+}
+
+inputbar {
+    background-color: transparent;
+    padding: 10px;
+    children: [prompt, entry];
+    spacing: 10px;
+}
+
+prompt {
+    enabled: true;
+    background-color: @primary;
+    color: @on-primary;
+    border-radius: 0.5em;
+    vertical-align: 0.5;
+    padding: 0.4em;
+}
+
+entry {
+    background-color: @surface-container-highest;
+    color: @on-surface;
+    border-radius: 1em;
+    padding: 0 1em;
+    vertical-align: 0.5;
+    placeholder: "Search...";
+    placeholder-color: @outline;
+    hide-cursor-on-empty: true;
+    cursor-color: @on-surface;
+}
+
+listview {
+    dynamic: true;
+    background-color: transparent;
+    spacing: 10px;
+    margin: 10px;
+}
+
+element {
+    background-color: transparent;
+    padding: 10px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: @on-surface;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    background-color: inherit;
+    size: 32px;
+}
+
+element selected.normal, element-text selected.normal {
+    background-color: @tertiary;
+    border-radius: 0.5em;
+    text-color: @on-tertiary;
+}
+
+

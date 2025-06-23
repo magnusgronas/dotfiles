@@ -21,3 +21,7 @@ post_hook = 'pkill -SIGUSR2 waybar'
 input_path = './templates/colors.conf'
 output_path = '~/.config/hypr/colors.conf'
 post_hook = 'hyprctl reload'
+
+[templates.rofi]
+input_path = './templates/colors.rasi'
+output_path = '~/.config/rofi/colors.rasi'

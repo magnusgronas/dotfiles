@@ -1,0 +1,23 @@
+configuration {
+	modes: "window,drun,run,ssh,emoji,wifi:iwdrofimenu";
+	font: "JetBrainsMono Nerd Font Medium 20";
+	show-icons: true;
+	terminal: "ghostty";
+	icon-theme: "Papirus";
+	drun-display-format: "{icon} ｜ {name}";
+  //   ｜
+	display-window: "Windows";
+	display-drun: "Applications";
+  sort: true;
+
+  // keybindings
+  kb-accept-entry: "Return";
+  kb-remove-to-sol: "control+d";
+  kb-remove-to-eol: "";
+  kb-row-down: "control+j";
+  kb-row-up: "control+k";
+  kb-remove-char-forward: "Delete";
+
+}
+
+@theme "catppuccin-macchiato"
