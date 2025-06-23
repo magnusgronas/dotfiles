@@ -1,12 +1,21 @@
 configuration {
-	modes: "window,drun,run,ssh";
-	font: "JetBrainsMono Nerd Font 16";
-	show-icons: true;
-	terminal: "ghostty";
-	icon-theme: "Papirus";
-	drun-display-format: "{icon} {name}";
+    modes: "window,drun,run,ssh";
+    font: "JetBrainsMono Nerd Font 16";
+    show-icons: true;
+    terminal: "ghostty";
+    icon-theme: "Papirus";
+    drun-display-format: "{icon} {name}";
     display-drun: "Apps";
+
+    // Keybinds
+    kb-accept-entry: "Return";
+    kb-remove-to-sol: "control+d";
+    kb-remove-to-eol: "";
+    kb-row-down: "control+j";
+    kb-row-up: "control+k";
+    kb-remove-char-forward: "Delete";
 }
+
 @theme "/dev/null"
 @import "./colors.rasi"
 
@@ -18,7 +27,7 @@ window {
     transparency: "real";
     location: center;
     width: 1000px;
-    height: 750px;
+    height: 770px;
     padding: 1em;
     border-radius: 1em;
 }
