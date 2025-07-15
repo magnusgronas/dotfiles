@@ -114,7 +114,8 @@
   },
 
   "memory": {
-    "format": "{used:0.1f} GiB ",
+    "format": "{used:0.1f} GiB",
+    // "format": "{used:0.1f} GiB ",
     "tooltip-format": "free: {avail}GiB",
     "on-click": "ghostty -e btop",
     "interval": 10,
@@ -254,7 +255,7 @@
 
   "custom/power": {
     "format": "󰣇",
-    "on-click": "wlogout",
+    "on-click": "ignis open-window ignis_PowerMenu",
     "tooltip": false,
   },
 

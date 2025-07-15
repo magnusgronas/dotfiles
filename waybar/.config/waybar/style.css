@@ -1,13 +1,13 @@
 @import "matugen.css";
 
 * {
-  font-family: JetBrainsMono Nerd Font;
+  font-family: JetBrainsMono Nerd Font Propo;
   font-size: 16px;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 window#waybar {
-  all:unset;
+  all: unset;
   background: alpha(@background, 0.4);
 }
 
@@ -51,11 +51,11 @@ tooltip label {
 }
 
 #workspaces button {
-  all:unset;
+  all: unset;
   border-radius: 10em;
   padding: 0.6em 0.6em;
   margin: 0.2em 0.4em;
-  transition: all .1s ease;
+  transition: all 0.1s ease;
 }
 
 #workspaces button:nth-child(1) {
@@ -98,7 +98,7 @@ tooltip label {
 #custom-power,
 #cpu,
 #memory,
-#temperature, 
+#temperature,
 #group-expand,
 #pulseaudio,
 #network,
@@ -138,7 +138,7 @@ tooltip label {
 }
 
 #battery.charging {
-  color: #81C784;
+  color: #81c784;
 }
 
 #network.disabled,
