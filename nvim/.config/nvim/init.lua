@@ -1,5 +1,0 @@
-require("config.keymaps")
-require("config.snacks_keymaps")
-require("config.options")
-require("config.highlights")
-require("config.lazy")

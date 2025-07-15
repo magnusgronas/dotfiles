@@ -1,4 +1,0 @@
-{
-  "diagnostics.disable": ["undefined-doc-name"],
-  "diagnostics.globals": ["Snacks"]
-}
