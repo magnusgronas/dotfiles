@@ -1,9 +1,9 @@
 local M = {}
 
 M.base46 = {
-	-- theme = "catppuccin",
+	theme = "catppuccin",
 	-- theme = "tokyonight",
-	theme = "onedark",
+	-- theme = "onedark",
 	transparency = true,
 	hl_override = {
 		-- ["@property"] = { fg = "red" },

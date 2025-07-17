@@ -25,7 +25,3 @@ post_hook = 'hyprctl reload'
 [templates.rofi]
 input_path = './templates/colors.rasi'
 output_path = '~/.config/rofi/colors.rasi'
-
-[templates.ignis]
-input_path = './templates/colors.scss'
-output_path = '~/.config/ignis/colors.scss'
