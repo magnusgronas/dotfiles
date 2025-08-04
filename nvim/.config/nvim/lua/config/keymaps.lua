@@ -52,10 +52,10 @@ map("<leader>se", "<C-w>=", { desc = "Make splits equal" })
 map("<leader>sx", ":close<CR>", { desc = "Close split" })
 
 -- Navigate between splits
-map("<C-k>", "<C-w>k")
-map("<C-j>", "<C-w>j")
-map("<C-h>", "<C-w>h")
-map("<C-l>", "<C-w>l")
+-- map("<C-k>", "<C-w>k")
+-- map("<C-j>", "<C-w>j")
+-- map("<C-h>", "<C-w>h")
+-- map("<C-l>", "<C-w>l")
 
 -- Stay in indent mode
 map("<", "<gv", {}, { "v" })
@@ -73,20 +73,20 @@ map("<leader>Ex", "<cmd>!chmod +x %<CR>", { desc = "Make file executable" })
 -- Highlight yank
 vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#a6e3a1", fg = "#000000" })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight text after yanking",
-  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-  callback = function()
-    vim.hl.on_yank({ higroup = "YankHighlight", timeout = 300 })
-  end,
+    desc = "Highlight text after yanking",
+    group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+    callback = function()
+        vim.hl.on_yank({ higroup = "YankHighlight", timeout = 300 })
+    end,
 })
 
 -- Diagnostic keymaps
 map("ød", function()
-  vim.diagnostic.jump({ count = -1, float = true })
+    vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to previous diagnostic message" })
 
 map("æd", function()
-  vim.diagnostic.jump({ count = 1, float = true })
+    vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Go to next diagnostic message" })
 
 map("<leader>xf", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })

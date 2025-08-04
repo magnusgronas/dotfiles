@@ -17,7 +17,7 @@ opt.ruler = false
 
 -- HACK: hide cursor line but still highlight current linenumber
 opt.cursorline = true
-vim.cmd("highlight CursorLine ctermbg=235 guibg=NONE")
+-- vim.cmd("highlight CursorLine ctermbg=235 guibg=NONE")
 
 -- tab / indenting
 opt.tabstop = indent
@@ -61,26 +61,24 @@ local icons = require("util").icons
 
 -- Diagnostics
 vim.diagnostic.config({
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.HINT] = "",
-      [vim.diagnostic.severity.INFO] = "",
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.HINT] = "",
+            [vim.diagnostic.severity.INFO] = "",
+        },
     },
-  },
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-  float = {
-    border = "rounded",
-    header = { icons.debug .. " Diagnostics:" },
-  },
-  virtual_text = {
-    prefix = "●",
-    source = "if_many",
-    spacing = 8,
-  },
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+    float = {
+        border = "rounded",
+        header = { icons.debug .. " Diagnostics:" },
+    },
+    virtual_text = {
+        prefix = "●",
+        source = "if_many",
+        spacing = 8,
+    },
 })
-
--- Hover docs

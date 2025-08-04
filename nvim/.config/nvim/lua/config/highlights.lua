@@ -13,3 +13,4 @@ hl(0, "", {})
 
 -- Which-key
 hl(0, "WhichKeyBorder", { fg = "none", bg = "none" })
+hl(0, "WhichKeyTitle", { bg = "none" })

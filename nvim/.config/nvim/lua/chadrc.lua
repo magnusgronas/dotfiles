@@ -1,27 +1,27 @@
 local M = {}
 
 M.base46 = {
-	theme = "catppuccin",
-	-- theme = "tokyonight",
-	-- theme = "onedark",
-	transparency = true,
-	hl_override = {
-		-- ["@property"] = { fg = "red" },
-	},
+    -- theme = "catppuccin",
+    -- theme = "tokyonight",
+    theme = "onedark",
+    transparency = true,
+    hl_override = {
+        -- ["@property"] = { fg = "red" },
+    },
 }
 
 M.nvdash = {
-	enabled = false,
+    enabled = false,
 }
 
 M.ui = {
-	statusline = {
-		enabled = false,
-	},
+    statusline = {
+        enabled = false,
+    },
 }
 
 M.lsp = {
-	signature = false,
+    signature = false,
 }
 
 return M
