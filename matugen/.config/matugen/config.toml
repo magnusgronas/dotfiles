@@ -3,6 +3,10 @@ command = "hyprctl"
 arguments = ["hyprpaper","reload", ","]
 set = true
 
+[config.custom_colors]
+green = { color = "#81c784", blend = false }
+yellow = { color = "#e6c26c", blend = false }
+
 [templates.ghostty]
 input_path = "./templates/ghostty.theme"
 output_path = "/home/magnus/.config/ghostty/themes/matugen.theme"
