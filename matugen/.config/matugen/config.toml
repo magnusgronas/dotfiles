@@ -5,7 +5,7 @@ set = true
 
 [config.custom_colors]
 green = { color = "#81c784", blend = false }
-yellow = { color = "#e6c26c", blend = false }
+yellow = { color = "#f9e2af", blend = false }
 
 [templates.ghostty]
 input_path = "./templates/ghostty.theme"

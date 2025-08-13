@@ -55,6 +55,12 @@
             "cache_duration": "none",
             "fetch_status": true
           }
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:git",
+          "template": "  {{ .Full }} "
         }
       ]
     },

@@ -45,7 +45,7 @@ setopt hist_find_no_dups
 HIST_STAMPS="dd.mm.yyyy"
 
 # Prompt
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/myconf.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/myconf.toml)"
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

@@ -64,8 +64,8 @@
         "format": "{name}",
         "persistent-workspaces": {
             "*": 5,
-            "HDMI-A-1": [1, 2, 3, 4, 5],
-            "eDP-1": [6, 7, 8, 9, 10],
+            // "HDMI-A-1": [1, 2, 3, 4, 5],
+            // "eDP-1": [6, 7, 8, 9, 10],
         },
         "format-icons": {
             "active": "",

@@ -7,9 +7,18 @@ return {
         {
             "L3MON4D3/LuaSnip",
             version = "v2.*",
-            config = function()
+            build = "make install_jsregexp",
+            config = function() -- Add a config function for LuaSnip itself
+                -- Load friendly-snippets (VS Code format)
                 require("luasnip.loaders.from_vscode").lazy_load()
+
+                -- Load your custom snippets from nvim/snippets/luasnip.lua
+                -- Make sure this path is correct relative to your Neovim config root
+                dofile(vim.fn.stdpath("config") .. "/snippets/luasnip.lua")
             end,
+            dependencies = {
+                "rafamadriz/friendly-snippets", -- friendly-snippets does not need a config function here anymore
+            },
         },
         "xzbdmw/colorful-menu.nvim",
     },

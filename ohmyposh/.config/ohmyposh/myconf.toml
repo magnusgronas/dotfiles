@@ -2,19 +2,19 @@ console_title_template = '{{ .Shell }}'
 version = 3
 final_space = true
 
-[palette]
-  git_status = '#c6a0f6'
-  git = '#6e738d'
-  error = '#ed8796'
-  primary = '#f4dbd6'
-  date = '#a5adcb'
-  path = '#cad3f5'
-  time = '#eed49f'
+# [palette]
+#   git_status = '#c6a0f6'
+#   git = '#6e738d'
+#   error = '#ed8796'
+#   primary = '#f4dbd6'
+#   date = '#a5adcb'
+#   path = '#cad3f5'
+#   time = '#eed49f'
 
 [transient_prompt]
   template = '󰘧 '
   background = 'transparent'
-  foreground_templates = ['{{if gt .Code 0}}p:error{{end}}', '{{if eq .Code 0}}p:primary{{end}}']
+  foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}green{{end}}']
 
 [[blocks]]
   type = 'rprompt'
@@ -22,7 +22,7 @@ final_space = true
 
   [[blocks.segments]]
     template = '{{ div .Ms 1000 }}s'
-    foreground = 'p:time'
+    foreground = 'yellow'
     background = 'transparent'
     type = 'executiontime'
     style = 'plain'
@@ -32,7 +32,7 @@ final_space = true
 
   [[blocks.segments]]
     template = ' {{ .CurrentDate | date .Format }} '
-    foreground = 'p:date'
+    foreground = '8'
     type = 'time'
     style = 'plain'
 
@@ -45,7 +45,7 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    foreground = 'p:path'
+    foreground = 'cyan'
     type = 'path'
     style = 'plain'
     template = '{{ .Path }}'
@@ -57,8 +57,8 @@ final_space = true
       style = 'full'
 
   [[blocks.segments]]
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <p:git_status>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
-    foreground = 'p:git'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <magenta>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    foreground = '8'
     type = 'git'
     style = 'plain'
 
@@ -73,13 +73,13 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    template = '󰘧 '
+    template = '󰘧'
     # ❯  󰘧 󰞷
     # ❯ ❭ 〉 › ❯ 
     background = 'transparent'
     type = 'text'
     style = 'plain'
-    foreground_templates = ['{{if gt .Code 0}}p:error{{end}}', '{{if eq .Code 0}}p:primary{{end}}']
+    foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}blue{{end}}']
 
     [blocks.segments.properties]
       cache_duration = 'none'
