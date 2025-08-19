@@ -1,6 +1,7 @@
 @import "matugen.css";
 
 * {
+  all: unset;
   font-family: NotoSans Nerd;
   font-size: 16px;
   font-weight: 600;
@@ -87,6 +88,15 @@ tooltip label {
 
 #workspaces button.empty {
   color: @surface_bright;
+}
+
+#workspaces button:not(.active):hover {
+  color: @inverse_primary;
+  font-weight: 800;
+}
+
+#workspaces button.urgent {
+  color: @error;
 }
 
 #clock {
