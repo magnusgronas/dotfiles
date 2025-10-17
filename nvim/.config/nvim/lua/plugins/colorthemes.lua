@@ -1,18 +1,24 @@
 return {
     {
         "folke/tokyonight.nvim",
-        lazy = false,
+        lazy = true,
+        enabled = true,
         priority = 1000,
         config = function()
             require("tokyonight").setup({
-                transparent = true,
+                transparent = false,
+                style = "night",
                 styles = {
-                    floats = "transparent",
-                    sidebars = "transparent",
+                    -- floats = "",
+                    -- sidebars = "transparent",
                 },
-                on_colors = function (colors)
-                    colors.bg_statusline = colors.none
-                end
+                cache = true,
+                -- on_colors = function(colors)
+                --     colors.bg_statusline = colors.none
+                -- end,
+                plugins = {
+                    auto = true,
+                }
             })
             vim.cmd [[colorscheme tokyonight]]
         end
@@ -20,7 +26,6 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        -- event = "VeryLazy",
         enabled = false,
         priority = 1000,
         config = function()

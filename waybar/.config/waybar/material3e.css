@@ -1,0 +1,157 @@
+@import "matugen.css";
+
+* {
+    all: unset;
+    font-family: NotoSans Nerd;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+window#waybar {
+    all: unset;
+    background: @background;
+}
+
+tooltip {
+    background: @surface;
+    border-radius: 1em;
+    border: none;
+}
+tooltip label {
+    color: @on_surface;
+    padding: 0.6em;
+}
+
+.modules-right {
+    background: @surface;
+    color: @primary;
+    border-radius: 10em;
+    padding: 0 1.2em;
+    margin: 0em 1em;
+}
+
+.modules-center {
+    color: @on_surface;
+    border-radius: 10em;
+    padding: 0;
+    margin: 0.2em 1em;
+}
+
+#window {
+    color: @primary;
+}
+
+#workspaces {
+    /* background: @surface_container; */
+    border-radius: 2em;
+    margin: 6px;
+    padding: 0 0.6em;
+}
+
+#workspaces button {
+    all: unset;
+    background-color: @primary;
+    color: @on_primary;
+    border-radius: 0.6em;
+    padding: 0.6em 2em;
+    margin: 0 0.1em;
+}
+
+#workspaces button:nth-child(1) {
+    border-radius: 2em 0.6em 0.6em 2em
+}
+
+#workspaces button:nth-last-child(1) {
+    border-radius: 0.6em 2em 2em 0.6em
+}
+
+#workspaces button.active {
+    background-color: @inverse_primary;
+    color: @primary;
+    border-radius: 2em;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.empty {
+    color: @primary;
+    background: @surface_bright;
+}
+
+#workspaces button.urgent {
+    color: @error;
+}
+
+#clock {
+    color: @primary;
+    font-family: JetBrainsMono Nerd Font;
+    padding: 0 1.2em;
+    font-size: 20px;
+}
+
+#custom-expand,
+#custom-colorpicker,
+#custom-power,
+#cpu,
+#power-profiles-daemon,
+#memory,
+#temperature,
+#group-expand,
+#pulseaudio,
+#bluetooth,
+#network {
+    padding: 0 0.4em;
+    font-size: 20px;
+}
+
+#battery {
+    font-family: JetBrainsMono Nerd Font;
+    padding: 0 0.4em;
+    font-size: 18px;
+}
+
+#custom-notification {
+    padding: 0 0.2em;
+    font-size: 20px;
+}
+
+#pulseaudio.muted {
+    color: @error;
+}
+
+#custom-separator {
+    color: @surface_bright;
+    font-size: 20px;
+}
+
+#custom-power {
+    font-size: 24px;
+    background: @surface;
+    color: @primary;
+    border-radius: 10em;
+    margin: 0 0.6em;
+}
+
+#battery.critical {
+    color: @error;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.charging {
+    color: @green;
+}
+
+#network.disabled,
+#network.disconnected {
+    color: @error;
+}
+
+#power-profiles-daemon.performance {
+    color: @error;
+}
+
+#power-profiles-daemon.power-saver {
+    color: @green;
+}

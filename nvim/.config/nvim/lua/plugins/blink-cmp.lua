@@ -77,7 +77,7 @@ return {
                 max_height = 20,
                 min_width = 20,
                 scrollbar = true,
-                border = "rounded",
+                border = "none",
                 draw = {
                     padding = 2,
                     columns = {
@@ -87,12 +87,10 @@ return {
                     components = {
                         label = {
                             text = function(ctx)
-                                return require("colorful-menu").blink_components_text(
-                                    ctx)
+                                return require("colorful-menu").blink_components_text(ctx)
                             end,
                             highlight = function(ctx)
-                                return require("colorful-menu")
-                                    .blink_components_highlight(ctx)
+                                return require("colorful-menu").blink_components_highlight(ctx)
                             end,
                         },
                     },
@@ -119,7 +117,7 @@ return {
             },
             ghost_text = {
                 enabled = true,
-                show_without_selection = true,
+                show_without_selection = false,
             },
         },
 
@@ -132,8 +130,8 @@ return {
                     draw = {
                         columns = {
                             { "kind_icon" },
-                            { "label" }
-                        }
+                            { "label" },
+                        },
                     },
                 },
             },
@@ -142,14 +140,8 @@ return {
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-            providers = {
-                lazydev = {
-                    name = "LazyDev",
-                    module = "lazydev.integrations.blink",
-                    score_offset = 100,
-                },
-            },
+            default = { "lsp", "path", "snippets", "buffer" },
+            providers = {},
         },
 
         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

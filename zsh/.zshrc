@@ -60,8 +60,16 @@ alias cdc="cd && clear"
 alias ls="eza --color=always --icons=always"
 alias la="eza --color=always --icons=always -a -l"
 alias ll="eza --color=always --icons=always -l"
+alias cat="bat"
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# bun completions
+[ -s "/home/magnus/.bun/_bun" ] && source "/home/magnus/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

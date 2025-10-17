@@ -12,7 +12,7 @@ return {
             require("lualine").setup({
                 options = {
                     theme = "auto",
-                    -- disabled_filetypes = { statusline = { "snacks_dashoard" } },
+                    disabled_filetypes = { "snacks_layout_box" },
                     section_separators = {
                         left = "",
                         right = "",
@@ -23,13 +23,13 @@ return {
                     },
                 },
                 sections = {
-                    lualine_a = { 'mode' },
+                    lualine_a = { "mode" },
                     lualine_b = {
                         {
                             "filename",
                             path = 4,
-                            symbols = { modified = "", readonly = "", unnamed = "[No Name]", newfile = "󰝒", },
-                        }
+                            symbols = { modified = "", readonly = "", unnamed = "[No Name]", newfile = "󰝒" },
+                        },
                     },
                     lualine_c = {
                         {
@@ -39,32 +39,32 @@ return {
                             cond = hide,
                         },
                         {
-                            'diff',
+                            "diff",
                             cond = hide,
                             color = { bg = "none" },
                         },
                     },
                     lualine_x = {
                         {
-                            'diagnostics',
-                            cond = hide
+                            "diagnostics",
+                            cond = hide,
                         },
                         {
-                            'lsp_status',
-                            cond = hide
+                            "lsp_status",
+                            cond = hide,
                         },
                         {
-                            'filetype',
-                            icon_only = true
+                            "filetype",
+                            icon_only = true,
                         },
                     },
                     lualine_y = {
-                        'progress',
+                        "progress",
                     },
                     lualine_z = {
-                        'location',
-                    }
-                }
+                        "location",
+                    },
+                },
             })
         end,
     },

@@ -1,12 +1,9 @@
 return {
-  settings = {
-    pyright = {
-      disableOrganizeImports = true, -- Using Ruff
+    settings = {
+        python = {
+            analysis = {
+                typeChekingMode = "off",
+            },
+        },
     },
-    python = {
-      analysis = {
-        ignore = { '*' }, -- Using Ruff
-      },
-    },
-  },
 }

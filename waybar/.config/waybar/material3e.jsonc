@@ -9,11 +9,11 @@
     "modules-left": [
         "custom/power",
         "custom/separator",
-        "hyprland/workspaces",
+        "clock",
         "hyprland/window",
         "tray",
     ],
-    "modules-center": ["clock"],
+    "modules-center": ["hyprland/workspaces"],
     // "modules-center": ["clock", "group/audio"],
     "modules-right": [
         "group/expand",

@@ -42,8 +42,10 @@ map("<Right>", ":vertical resize +2<CR>")
 -- Buffers
 map("<Tab>", ":bnext<CR>")
 map("<S-Tab>", ":bprevious<CR>")
-map("<leader>bx", ":bd<CR>", { desc = "Close buffer" })
-map("<leader>bn", "<cmd> enew <CR>", { desc = "Open new buffer" })
+map("<leader>x", function ()
+    Snacks.bufdelete()
+end, { desc = "Close buffer" })
+map("<leader>n", "<cmd> enew <CR>", { desc = "Open new buffer" })
 
 -- Window management
 map("<leader>sv", "<C-w>v", { desc = "Vertical split" })
@@ -51,11 +53,11 @@ map("<leader>sh", "<C-w>s", { desc = "Horizontal split" })
 map("<leader>se", "<C-w>=", { desc = "Make splits equal" })
 map("<leader>sx", ":close<CR>", { desc = "Close split" })
 
--- Navigate between splits
--- map("<C-k>", "<C-w>k")
--- map("<C-j>", "<C-w>j")
--- map("<C-h>", "<C-w>h")
--- map("<C-l>", "<C-w>l")
+-- Move splits
+-- map("<C-S-k>", "<C-w>K")
+-- map("<C-S-j>", "<C-w>J")
+-- map("<C-S-h>", "<C-w>H")
+-- map("<C-S-l>", "<C-w>L")
 
 -- Stay in indent mode
 map("<", "<gv", {}, { "v" })
@@ -89,5 +91,5 @@ map("æd", function()
     vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Go to next diagnostic message" })
 
-map("<leader>xf", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-map("<leader>xq", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+map("<leader>df", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+map("<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })

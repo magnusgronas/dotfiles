@@ -53,7 +53,7 @@ return {
         scope = { enabled = true },
         scroll = { enabled = false },
         statuscolumn = { enabled = true },
-        words = { enabled = false },
+        words = { enabled = true },
         image = { enabled = true },
 
         -- NOTE: Styling for the various modules
@@ -110,6 +110,13 @@ return {
             desc = "Grep search",
         },
         {
+            "<leader>fb",
+            function()
+                Snacks.picker.buffers()
+            end,
+            desc = "Grep search",
+        },
+        {
             "<leader>fwg",
             function()
                 Snacks.picker.grep_word()
@@ -154,5 +161,21 @@ return {
             end,
             desc = "Show git branches",
         },
+
+        -- Words
+        {
+            "<leader>w",
+            function ()
+                Snacks.words.jump(1, true)
+            end,
+            desc = "Jump to next word"
+        },
+        {
+            "<leader>W",
+            function ()
+                Snacks.words.jump(-1, true)
+            end,
+            desc = "Jump to previous word"
+        }
     },
 }

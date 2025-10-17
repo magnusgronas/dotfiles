@@ -141,15 +141,15 @@ tooltip label {
 }
 
 #battery.critical {
-  color: @error_container;
-}
-
-#battery.warning {
   color: @error;
 }
 
+#battery.warning {
+  color: @yellow;
+}
+
 #battery.charging {
-  color: #81c784;
+  color: @green;
 }
 
 #network.disabled,
@@ -162,5 +162,5 @@ tooltip label {
 }
 
 #power-profiles-daemon.power-saver {
-  color: #81c784;
+  color: @green;
 }
