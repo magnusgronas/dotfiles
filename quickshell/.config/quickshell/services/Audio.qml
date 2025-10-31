@@ -14,7 +14,7 @@ Singleton {
     readonly property bool muted: sink?.audio.muted
     readonly property real volume: sink?.audio.volume
     readonly property string volumeText: {
-        (muted) ? "󰖁" : (volume > 0.66) ? "󰕾" : (volume > 0.33) ? "󰖀" : (volume > 0) ? "󰕿" : "󰖁"
+        (muted) ? "volume_off" : (volume > 0.66) ? "volume_up" : (volume > 0.33) ? "volume_down" : (volume > 0) ? "volume_mute" : "volume_off"
     }
 
     function volumeIcon() {

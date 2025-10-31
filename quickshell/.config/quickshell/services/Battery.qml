@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Services.UPower
 import QtQuick
 
+// TODO: MAKE PART OF GLOBAL CONFIG
 Singleton {
 
     property bool available: UPower.displayDevice.isLaptopBattery

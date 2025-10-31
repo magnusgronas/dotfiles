@@ -7,6 +7,7 @@ import qs.common
 import qs.common.widgets
 import qs.services
 
+// TODO: MAKE PART OF GLOBAL CONFIG
 Item {
     id: root
     readonly property MprisPlayer activePlayer: MprisController.activePlayer
@@ -44,7 +45,7 @@ Item {
     RowLayout {
         id: rowLayout
 
-        spacing: 10
+        spacing: 20
         anchors.fill: parent
 
         Item {
@@ -85,7 +86,6 @@ Item {
 
         StyledText {
             visible: true
-            // width: rowLayout.width - (mediaCircProg.implicitWidth + rowLayout.spacing * 2)
             Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true
             Layout.rightMargin: rowLayout.spacing

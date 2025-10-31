@@ -7,6 +7,7 @@ import Quickshell.Hyprland
 import qs.services
 import qs.common.widgets
 
+// TODO: MAKE VALUES PART OF GLOBAL CONFIG
 Item {
     id: root
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(root.QsWindow.window?.screen)

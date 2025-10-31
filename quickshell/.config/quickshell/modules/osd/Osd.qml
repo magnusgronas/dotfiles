@@ -112,12 +112,21 @@ Scope {
                         implicitWidth: 40
                         implicitHeight: 40
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 20
+                        Layout.leftMargin: 18
 
-                        IconImage {
-                            implicitSize: parent.implicitWidth
-                            source: Audio.volumeIcon()
+                        MaterialSymbol {
+                            // verticalAlignment: Qt.AlignVCenter
+                            text: Audio.volumeText
+                            fill: 1
+                            iconSize: 40
+                            color: root.dimWhenMuted()
+                            
                         }
+
+                        // IconImage {
+                        //     implicitSize: parent.implicitWidth
+                        //     source: Audio.volumeIcon()
+                        // }
                     }
                     ColumnLayout {
                         Layout.alignment: Qt.AlignVCenter

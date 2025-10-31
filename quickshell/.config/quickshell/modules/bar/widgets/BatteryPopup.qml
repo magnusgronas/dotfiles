@@ -3,6 +3,8 @@ import QtQuick.Layouts
 
 import qs.common.widgets
 import qs.services
+
+// TODO: MAKE PART OF GLOBAL CONFIG
 StyledPopup {
     id: root
     

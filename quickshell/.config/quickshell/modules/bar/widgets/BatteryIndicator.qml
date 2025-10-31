@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import qs.services
 import qs.common.widgets
 
+// TODO: MAKE PART OF GLOBAL CONFIG
 MouseArea {
     id: root
     property bool borderless: false
@@ -21,7 +22,6 @@ MouseArea {
     implicitHeight: batteryProgress.implicitHeight
 
     hoverEnabled: true
-    onEntered: console.log("Battery indicator mousearea entered")
     onExited: isHovering = false
 
     BatteryProgressBar {

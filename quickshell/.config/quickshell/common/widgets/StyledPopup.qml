@@ -72,7 +72,7 @@ LazyLoader {
             children: [root.contentItem]
 
             border.width: 1
-            border.color: "#8f909a"
+            border.color: "#292a2f"
         }
     }
 }

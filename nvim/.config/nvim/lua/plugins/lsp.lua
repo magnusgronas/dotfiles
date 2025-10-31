@@ -14,8 +14,9 @@ return {
 			"hyprls",
 			"lua_ls",
 			"pyright",
-            "ts_ls",
+            "kotlin_lsp",
             "qmlls",
+            "ts_ls",
 		},
 	},
 	dependencies = {

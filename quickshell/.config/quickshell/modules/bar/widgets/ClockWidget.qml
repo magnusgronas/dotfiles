@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import qs.common.widgets
 import qs.services
 
+// TODO: MAKE PART OF GLOBAL CONFIG
 Item {
     id: root
     property bool showDate: true
@@ -38,7 +39,7 @@ Item {
         hoverEnabled: true
         acceptedButtons: Qt.NoButton
 
-        ClockWidgetTooltip {
+        ClockWidgetPopup {
             hoverTarget: mouseArea
         }
     }

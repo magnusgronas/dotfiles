@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import qs.services
 import qs.common.widgets
 
+// TODO: MAKE PART OF GLOBAL CONFIG
 StyledPopup {
     id: root
     property string formattedDate: Qt.formatDateTime(DateTime.clock.date, "dddd, MMMM dd, yyyy")
