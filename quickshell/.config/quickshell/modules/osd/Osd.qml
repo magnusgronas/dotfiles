@@ -14,8 +14,6 @@ import qs.common.widgets
 Scope {
     id: root
 
-    property var focusedScreen: Quickshell.screens.find(s => s.name === Hyprland.focusedMonitor?.name)
-
     property bool showOsd: false
     property real volume
 
@@ -141,12 +139,14 @@ Scope {
                                 Layout.fillWidth: true
                                 text: "Volume"
                                 color: root.dimWhenMuted()
+                                font.pixelSize: 20
                             }
 
                             StyledText {
                                 Layout.fillWidth: false
                                 text: Math.round(root.volume * 100)
                                 color: root.dimWhenMuted()
+                                font.pixelSize: 20
                             }
                         }
 

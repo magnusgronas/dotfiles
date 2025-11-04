@@ -11,7 +11,7 @@ import qs.services
 Item {
     id: root
     readonly property MprisPlayer activePlayer: MprisController.activePlayer
-    readonly property string title: activePlayer?.trackTitle || ""
+    readonly property string title: activePlayer?.trackTitle || "No Media"
     readonly property string artist: activePlayer?.trackArtist ? ` • ${activePlayer?.trackArtist}` : ""
 
     Layout.fillHeight: true

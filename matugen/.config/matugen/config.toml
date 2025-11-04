@@ -32,4 +32,4 @@ output_path = '~/.config/rofi/colors.rasi'
 
 [templates.quickshell]
 input_path = "./templates/Palette.qml"
-output_path = "~/.config/quickshell/Palette.qml"
+output_path = "~/.config/quickshell/common/Appearance.qml"

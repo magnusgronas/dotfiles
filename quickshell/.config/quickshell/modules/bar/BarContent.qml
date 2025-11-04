@@ -28,7 +28,7 @@ Item {
         id: barBackground
         anchors.fill: parent
         color: "#121318"
-        // color: "red"
+        // color: Qt.alpha("#121318", 0.9)
     }
 
     MouseArea {
@@ -102,8 +102,8 @@ Item {
 
                 BatteryIndicator {
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.leftMargin: 100
                     Layout.rightMargin: 20
+                    // Layout.fillWidth: true
                 }
             }
         }

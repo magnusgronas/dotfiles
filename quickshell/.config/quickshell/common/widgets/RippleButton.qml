@@ -4,6 +4,7 @@ import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
 import qs.common.functions
+import qs.common
 
 Button {
     id: root
@@ -20,12 +21,13 @@ Button {
     property var altAction // When right clicking
     property var middleClickAction // When middle clicking
 
-    property color colBackground
-    property color colBackgroundHover
-    property color colBackgroundToggled
-    property color colBackgroundToggledHover
-    property color colRipple
-    property color colRippleToggled
+    property color colBackground: ColorUtils.transparantize(Appearance?.colors.colLayer1Hover, 1) || "transparent"
+    property color colBackgroundHover: Appearance.colors.colLayer1Hover
+    property color colBackgroundToggled: Appearance.colors.primary
+    property color colBackgroundToggledHover: Appearance.colors.colPrimaryHover
+    property color colRipple: Appearance.colors.colLayer1Active
+    property color colRippleToggled: Appearance.colors.colPrimaryActive
 
     opacity: root.enabled ? 0.4 : 1
+    
 }

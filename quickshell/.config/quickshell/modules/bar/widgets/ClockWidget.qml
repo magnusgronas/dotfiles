@@ -16,21 +16,24 @@ Item {
     RowLayout {
         id: rowLayout
         anchors.centerIn: parent
+        spacing: 4
 
         StyledText {
             font.pixelSize: 24
             color: "#e3e2e9"
             text: DateTime.time
-            StyledText {
-                anchors {
-                    left: parent.right
-                    verticalCenter: parent.verticalCenter
-                    leftMargin: 4
-                }
-                font.pixelSize: 18
-                color: "#e3e2e9"
-                text: "󰧞 " + DateTime.date
-            }
+        }
+        StyledText {
+            font.pixelSize: 16
+            Layout.topMargin: 4
+            color: "#e3e2e9"
+            text: "󰧞"
+        }
+        StyledText {
+            Layout.alignment: Qt.AlignBottom
+            font.pixelSize: 20
+            color: "#e3e2e9"
+            text: DateTime.date
         }
     }
     MouseArea {

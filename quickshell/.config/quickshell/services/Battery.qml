@@ -4,6 +4,8 @@ import Quickshell
 import Quickshell.Services.UPower
 import QtQuick
 
+import qs.common
+
 // TODO: MAKE PART OF GLOBAL CONFIG
 Singleton {
 
@@ -24,14 +26,14 @@ Singleton {
     property real timeToEmpty: UPower.displayDevice.timeToEmpty
     property real timeToFull: UPower.displayDevice.timeToFull
 
-    property color statusColor: getColor(percentage)
+    property var statusColor: getColor(percentage)
 
     function getColor(percentage) {
         let color = ""
-        if (isCharging) return "#9ed49d"
-        if (!(isLow || isCritical)) return "#b3c5ff"
-        else if (isLow) color = "#e5c36c"
-        else if (isCritical) color = "#ffb4ab"
+        if (isCharging) return Appearance.colors.green
+        if (!(isLow || isCritical)) return Appearance.colors.colPrimary
+        else if (isLow) color = Appearance.colors.yellow
+        else if (isCritical) color = Appearance.colors.colError
         return color
 
 

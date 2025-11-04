@@ -1,4 +1,3 @@
-import QtQuick
 import Quickshell
 import qs.calculator
 import qs.modules.osd
