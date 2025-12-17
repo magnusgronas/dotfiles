@@ -6,6 +6,7 @@ import Quickshell
 import Quickshell.Wayland
 
 import qs.common.widgets
+import qs.common
 
 LazyLoader {
     id: root
@@ -14,17 +15,18 @@ LazyLoader {
     default property Item contentItem
     property real popupBackgroundMargin: 0
 
+    // HACK: Popup for tray items doesn't center properly
+    property bool isTrayPopup: false
+
     active: hoverTarget && hoverTarget.containsMouse
 
     component: PanelWindow {
         id: popupWindow
         color: "transparent"
 
-        anchors {
+        anchors {
             left: true
-            right: false
             top: true
-            bottom: false
         }
 
         implicitWidth: popupBackground.implicitWidth + 10 * 2 + root.popupBackgroundMargin
@@ -39,13 +41,11 @@ LazyLoader {
 
         margins {
             left: {
-                return root.QsWindow?.mapFromItem(
-                    root.hoverTarget,
-                    (root.hoverTarget.width - popupBackground.implicitWidth) / 2, 0
-                ).x;
+                const x = root.QsWindow?.mapFromItem(root.hoverTarget, (root.hoverTarget.width - popupBackground.implicitWidth) / 2, 0).x
+                // HACK: Center popup from tray items, was centered to the right edge of the icons
+                return !root.isTrayPopup ? x : x - Appearance.sizes.trayItem / 2;
             }
-            top: 50
-            bottom: 50
+            top: Appearance.sizes.barHeight
         }
 
         WlrLayershell.namespace: "quickshell:popup"

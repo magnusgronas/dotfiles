@@ -1,12 +1,11 @@
 pragma Singleton
+pragma ComponentBehavior: Bound
 
 import Quickshell
 
 import QtQuick
 
 import qs.common.functions
-
-// NOTE: THIS FILE IS A MATUGEN TEMPLATE TO EDIT THIS FILE, EDIT THE MATUGEN TEMPLATE INSTEAD
 
 Singleton {
     id: root
@@ -25,7 +24,7 @@ Singleton {
     m3colors: QtObject {
         property bool darkmode: true
         property bool transparent: false
-        property color m3background: "#b3c5ff"
+        property color m3background: "#b2c5ff"
         property color m3error: "#ffb4ab"
         property color m3errorContainer: "#93000a"
         property color m3inverseOnSurface: "#2f3036"
@@ -34,33 +33,33 @@ Singleton {
         property color m3onBackground: "#e3e2e9"
         property color m3onError: "#690005"
         property color m3onErrorContainer: "#ffdad6"
-        property color m3onPrimary: "#192e60"
-        property color m3onPrimaryContainer: "#dae1ff"
-        property color m3onPrimaryFixed: "#001849"
+        property color m3onPrimary: "#182e60"
+        property color m3onPrimaryContainer: "#dae2ff"
+        property color m3onPrimaryFixed: "#001848"
         property color m3onPrimaryFixedVariant: "#314578"
         property color m3onSecondary: "#2a3042"
-        property color m3onSecondaryContainer: "#dde2f9"
+        property color m3onSecondaryContainer: "#dce2f9"
         property color m3onSecondaryFixed: "#151b2c"
-        property color m3onSecondaryFixedVariant: "#414659"
+        property color m3onSecondaryFixedVariant: "#404659"
         property color m3onSurface: "#e3e2e9"
         property color m3onSurfaceVariant: "#c5c6d0"
         property color m3onTertiary: "#422741"
-        property color m3onTertiaryContainer: "#ffd6f9"
+        property color m3onTertiaryContainer: "#fed7f9"
         property color m3onTertiaryFixed: "#2b122b"
-        property color m3onTertiaryFixedVariant: "#5a3d58"
+        property color m3onTertiaryFixedVariant: "#5a3d59"
         property color m3outline: "#8f909a"
         property color m3outlineVariant: "#45464f"
-        property color m3primary: "#b3c5ff"
+        property color m3primary: "#b2c5ff"
         property color m3primaryContainer: "#314578"
-        property color m3primaryFixed: "#dae1ff"
-        property color m3primaryFixedDim: "#b3c5ff"
+        property color m3primaryFixed: "#dae2ff"
+        property color m3primaryFixedDim: "#b2c5ff"
         property color m3scrim: "#000000"
-        property color m3secondary: "#c1c6dd"
-        property color m3secondaryContainer: "#414659"
-        property color m3secondaryFixed: "#dde2f9"
-        property color m3secondaryFixedDim: "#c1c6dd"
+        property color m3secondary: "#c0c6dd"
+        property color m3secondaryContainer: "#404659"
+        property color m3secondaryFixed: "#dce2f9"
+        property color m3secondaryFixedDim: "#c0c6dd"
         property color m3shadow: "#000000"
-        property color m3sourceColor: "#0c1f4a"
+        property color m3sourceColor: "#0c214e"
         property color m3surface: "#121318"
         property color m3surfaceBright: "#38393f"
         property color m3surfaceContainer: "#1e1f25"
@@ -69,11 +68,11 @@ Singleton {
         property color m3surfaceContainerLow: "#1a1b21"
         property color m3surfaceContainerLowest: "#0d0e13"
         property color m3surfaceDim: "#121318"
-        property color m3surfaceTint: "#b3c5ff"
+        property color m3surfaceTint: "#b2c5ff"
         property color m3surfaceVariant: "#45464f"
         property color m3tertiary: "#e1bbdc"
-        property color m3tertiaryContainer: "#5a3d58"
-        property color m3tertiaryFixed: "#ffd6f9"
+        property color m3tertiaryContainer: "#5a3d59"
+        property color m3tertiaryFixed: "#fed7f9"
         property color m3tertiaryFixedDim: "#e1bbdc"
         property color m3green: "#9ed49d"
         property color m3yellow: "#e5c36c"
@@ -81,7 +80,7 @@ Singleton {
 
     colors: QtObject {
         property color colSubtext: m3colors.m3outline
-        property color colLayer0: ColorUtils.mix(ColorUtils.transparentize(m3colors.m3background, root.backgroundTransparency), m3colors.m3primary, Config.options.appearance.extraBackgroundTint ? 0.99 : 1)
+        property color colLayer0: ColorUtils.mix(ColorUtils.transparentize(m3colors.m3background, root.backgroundTransparency), m3colors.m3primary, false ? 0.99 : 1)
         property color colOnLayer0: m3colors.m3onBackground
         property color colLayer0Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer0, colOnLayer0, 0.9, root.contentTransparency))
         property color colLayer0Active: ColorUtils.transparentize(ColorUtils.mix(colLayer0, colOnLayer0, 0.8, root.contentTransparency))
@@ -154,5 +153,180 @@ Singleton {
         property color colOnErrorContainer: m3colors.m3onErrorContainer
         property color green: m3colors.m3green
         property color yellow: m3colors.m3yellow
+    }
+
+    animationCurves: QtObject {
+        readonly property list<real> expressiveFastSpatial: [0.42, 1.67, 0.21, 0.90, 1, 1] // Default, 350ms
+        readonly property list<real> expressiveDefaultSpatial: [0.38, 1.21, 0.22, 1.00, 1, 1] // Default, 500ms
+        readonly property list<real> expressiveSlowSpatial: [0.39, 1.29, 0.35, 0.98, 1, 1] // Default, 650ms
+        readonly property list<real> expressiveEffects: [0.34, 0.80, 0.34, 1.00, 1, 1] // Default, 200ms
+        readonly property list<real> emphasized: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82, 0.25, 1, 1, 1]
+        readonly property list<real> emphasizedFirstHalf: [0.05, 0, 2 / 15, 0.06, 1 / 6, 0.4, 5 / 24, 0.82]
+        readonly property list<real> emphasizedLastHalf: [5 / 24, 0.82, 0.25, 1, 1, 1]
+        readonly property list<real> emphasizedAccel: [0.3, 0, 0.8, 0.15, 1, 1]
+        readonly property list<real> emphasizedDecel: [0.05, 0.7, 0.1, 1, 1, 1]
+        readonly property list<real> standard: [0.2, 0, 0, 1, 1, 1]
+        readonly property list<real> standardAccel: [0.3, 0, 1, 1, 1, 1]
+        readonly property list<real> standardDecel: [0, 0, 0, 1, 1, 1]
+        readonly property real expressiveFastSpatialDuration: 350
+        readonly property real expressiveDefaultSpatialDuration: 500
+        readonly property real expressiveSlowSpatialDuration: 650
+        readonly property real expressiveEffectsDuration: 200
+    }
+
+    animation: QtObject {
+        property QtObject elementMove: QtObject {
+            property int duration: animationCurves.expressiveDefaultSpatialDuration
+            property int type: Easing.BezierSpline
+            property list<real> bezierCurve: animationCurves.expressiveDefaultSpatial
+            property int velocity: 650
+            property Component numberAnimation: Component {
+                NumberAnimation {
+                    duration: root.animation.elementMove.duration
+                    easing.type: root.animation.elementMove.type
+                    easing.bezierCurve: root.animation.elementMove.bezierCurve
+                }
+            }
+        }
+
+        property QtObject elementMoveEnter: QtObject {
+            property int duration: 400
+            property int type: Easing.BezierSpline
+            property list<real> bezierCurve: animationCurves.emphasizedDecel
+            property int velocity: 650
+            property Component numberAnimation: Component {
+                NumberAnimation {
+                    duration: root.animation.elementMoveEnter.duration
+                    easing.type: root.animation.elementMoveEnter.type
+                    easing.bezierCurve: root.animation.elementMoveEnter.bezierCurve
+                }
+            }
+        }
+
+        property QtObject elementMoveExit: QtObject {
+            property int duration: 200
+            property int type: Easing.BezierSpline
+            property list<real> bezierCurve: animationCurves.emphasizedAccel
+            property int velocity: 650
+            property Component numberAnimation: Component {
+                NumberAnimation {
+                    duration: root.animation.elementMoveExit.duration
+                    easing.type: root.animation.elementMoveExit.type
+                    easing.bezierCurve: root.animation.elementMoveExit.bezierCurve
+                }
+            }
+        }
+
+        property QtObject elementMoveFast: QtObject {
+            property int duration: animationCurves.expressiveEffectsDuration
+            property int type: Easing.BezierSpline
+            property list<real> bezierCurve: animationCurves.expressiveEffects
+            property int velocity: 850
+            property Component colorAnimation: Component {
+                ColorAnimation {
+                    duration: root.animation.elementMoveFast.duration
+                    easing.type: root.animation.elementMoveFast.type
+                    easing.bezierCurve: root.animation.elementMoveFast.bezierCurve
+                }
+            }
+            property Component numberAnimation: Component {
+                NumberAnimation {
+                    duration: root.animation.elementMoveFast.duration
+                    easing.type: root.animation.elementMoveFast.type
+                    easing.bezierCurve: root.animation.elementMoveFast.bezierCurve
+                }
+            }
+        }
+
+        property QtObject elementResize: QtObject {
+            property int duration: 300
+            property int type: Easing.BezierSpline
+            property list<real> bezierCurve: animationCurves.emphasized
+            property int velocity: 650
+            property Component numberAnimation: Component {
+                NumberAnimation {
+                    duration: root.animation.elementResize.duration
+                    easing.type: root.animation.elementResize.type
+                    easing.bezierCurve: root.animation.elementResize.bezierCurve
+                }
+            }
+        }
+
+        property QtObject clickBounce: QtObject {
+            property int duration: 400
+            property int type: Easing.BezierSpline
+            property list<real> bezierCurve: animationCurves.expressiveDefaultSpatial
+            property int velocity: 850
+            property Component numberAnimation: Component {
+                NumberAnimation {
+                    duration: root.animation.clickBounce.duration
+                    easing.type: root.animation.clickBounce.type
+                    easing.bezierCurve: root.animation.clickBounce.bezierCurve
+                }
+            }
+        }
+
+        property QtObject scroll: QtObject {
+            property int duration: 200
+            property int type: Easing.BezierSpline
+            property list<real> bezierCurve: animationCurves.standardDecel
+        }
+
+        property QtObject menuDecel: QtObject {
+            property int duration: 350
+            property int type: Easing.OutExpo
+        }
+    }
+
+    rounding: QtObject {
+        property int slight: 6
+        property int small: 12
+        property int normal: 17
+        property int large: 23
+        property int verylarge: 30
+        property int full: 9999
+    }
+
+    font: QtObject {
+        property QtObject family: QtObject {
+            property string main: "Google Sans Flex"
+            property string title: "Google Sans Flex"
+            property string materialSymbol: "Material Symbols Rounded"
+            property string nerdIcon: "JetBrainsMono NF"
+            property string mono: "JetBrainsMono NF"
+        }
+        property QtObject variableAxes: QtObject {
+            property var main: ({
+                "wght": 450,
+                "wdth": 100
+            })
+            property var numbers: ({
+                "wght": 450
+            })
+            property var title: ({
+                "wght": 550
+            })
+        }
+        property QtObject size: QtObject {
+            property int smallest: 10
+            property int smaller: 12
+            property int small: 14
+            property int normal: 16
+            property int large: 18
+            property int larger: 19
+            property int largest: 22
+            property int huge: 23
+            property int title: largest
+        }
+    }
+
+    sizes: QtObject {
+        property real barHeight: 50
+        property real barCenterModule: 360
+        property real osdWidth: 120
+        property real roundCornerSize: 30
+        property real trayItem: 22
+        property real osIcon: 26
+        property real powerMenuButton: 120
     }
 }

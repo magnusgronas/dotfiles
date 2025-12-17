@@ -5,6 +5,7 @@ import Quickshell.Wayland
 import Quickshell.Hyprland
 
 import qs.services
+import qs.common
 import qs.common.widgets
 
 // TODO: MAKE VALUES PART OF GLOBAL CONFIG
@@ -29,8 +30,8 @@ Item {
 
         StyledText {
             Layout.fillWidth: true
-            font.pixelSize: 14
-            color: "#e3e2e9"
+            font.pixelSize: Appearance.font.size.small
+            color: Appearance.colors.colSubtext
             elide: Text.ElideRight
             text: root.focusingThisMonitor && root.activeWindow?.activated && root.biggestWindow ?
                 root.activeWindow?.appId :
@@ -39,8 +40,8 @@ Item {
 
         StyledText {
             Layout.fillWidth: true
-            font.pixelSize: 18
-            color: "#e3e2e9"
+            font.pixelSize: Appearance.font.size.large
+            color: Appearance.colors.colOnLayer0
             elide: Text.ElideRight
             text: root.focusingThisMonitor && root.activeWindow?.activated && root.biggestWindow ?
                 root.activeWindow?.title :

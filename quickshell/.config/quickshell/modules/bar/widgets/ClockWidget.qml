@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.common.widgets
+import qs.common
 import qs.services
 
 // TODO: MAKE PART OF GLOBAL CONFIG
@@ -19,19 +20,20 @@ Item {
         spacing: 4
 
         StyledText {
-            font.pixelSize: 24
+            font.pixelSize: Appearance?.font.size.huge
             color: "#e3e2e9"
             text: DateTime.time
         }
         StyledText {
-            font.pixelSize: 16
+            font.pixelSize: Appearance?.font.size.large
+            font.family: Appearance?.font.family.iconNerd
             Layout.topMargin: 4
             color: "#e3e2e9"
             text: "󰧞"
         }
         StyledText {
             Layout.alignment: Qt.AlignBottom
-            font.pixelSize: 20
+            font.pixelSize: Appearance?.font.size.large
             color: "#e3e2e9"
             text: DateTime.date
         }

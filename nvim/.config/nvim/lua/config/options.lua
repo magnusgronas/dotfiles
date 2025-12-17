@@ -29,6 +29,7 @@ opt.smartindent = true
 opt.wrap = false
 opt.linebreak = true
 opt.breakindent = true
+opt.breakindentopt = "list:-1"
 
 -- general behaviour
 opt.conceallevel = 0

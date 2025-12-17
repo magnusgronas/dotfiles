@@ -28,6 +28,7 @@ Item {
         id: barBackground
         anchors.fill: parent
         color: "#121318"
+        // color: "transparent"
         // color: Qt.alpha("#121318", 0.9)
     }
 
@@ -39,16 +40,18 @@ Item {
             bottom: parent.bottom
             left: parent.left
             right: middleSection.left
+            leftMargin: 35
         }
+
 
         RowLayout {
             id: leftSideRowLayout
             anchors.fill: parent
             spacing: 10
 
+            PowerButton {}
+
             WindowWidget {
-                Layout.leftMargin: 23
-                Layout.rightMargin: 23
                 Layout.fillWidth: true
                 Layout.fillHeight: true
             }
@@ -69,10 +72,13 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             implicitWidth: root.centerSideModuleWidth
 
+            SystemTray {}
+
             Media {
-                Layout.leftMargin: 20
+                Layout.leftMargin: 5
                 Layout.fillWidth: true
             }
+
         }
 
         BarGroup {

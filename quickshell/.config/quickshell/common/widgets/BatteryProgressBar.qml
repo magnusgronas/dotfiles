@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
+import qs.common
+
 /**
  * Yoinked and modified from end-4's ClippedProgressbar
  */
@@ -10,7 +12,7 @@ Item {
     id: root
     property real valueBarWidth: 30
     property real valueBarHeight: 18
-    property real fontSize: 13
+    property real fontSize: Appearance.font.size.small
     property color highlightColor: "#685496"
     property color trackColor: Qt.alpha(highlightColor, 0.5) ?? "#000000"
     property alias radius: contentItem.radius
@@ -25,7 +27,7 @@ Item {
         id: progressRoot
         property real valueBarWidth: root.valueBarWidth
         property real valueBarHeight: root.valueBarHeight
-        property real fontSize: 13
+        property real fontSize: root.fontSize
         property alias radius: root.radius 
         default property Item textMask: Item {
             width: progressRoot.valueBarWidth
@@ -41,7 +43,6 @@ Item {
 
         value: root.value
 
-        // root.text: Math.round(value * 100)
         font {
             pixelSize: progressRoot.fontSize
             weight: root.text.length > 2 ? Font.Bold : Font.DemiBold
@@ -55,7 +56,7 @@ Item {
         contentItem: Rectangle {
             id: contentItem
             anchors.fill: progressRoot
-            radius: parent.height / 4
+            radius: Appearance.rounding.slight
             color: root.trackColor
             visible: false
 
@@ -70,7 +71,7 @@ Item {
                 width: parent.width * progressRoot.visualPosition
                 height: parent.height
 
-                radius: progressRoot.height / 4
+                // radius: progressRoot.height / 4
                 color: root.highlightColor
             }
         }
@@ -96,7 +97,7 @@ Item {
     }
     // Battery tip
     Rectangle {
-        implicitHeight: progressRoot.implicitHeight / 2
+        implicitHeight: progressRoot.implicitHeight / 3
         anchors.left: progressRoot.right
         anchors.leftMargin: 1
 

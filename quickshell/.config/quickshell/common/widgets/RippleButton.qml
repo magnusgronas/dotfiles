@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Controls
 
@@ -21,7 +23,7 @@ Button {
     property var altAction // When right clicking
     property var middleClickAction // When middle clicking
 
-    property color colBackground: ColorUtils.transparantize(Appearance?.colors.colLayer1Hover, 1) || "transparent"
+    property color colBackground: ColorUtils.transparentize(Appearance?.colors.colLayer1Hover, 1) || "transparent"
     property color colBackgroundHover: Appearance.colors.colLayer1Hover
     property color colBackgroundToggled: Appearance.colors.primary
     property color colBackgroundToggledHover: Appearance.colors.colPrimaryHover
@@ -29,5 +31,157 @@ Button {
     property color colRippleToggled: Appearance.colors.colPrimaryActive
 
     opacity: root.enabled ? 0.4 : 1
-    
+
+    property color buttonColor: ColorUtils.transparentize(
+        root.toggled 
+        ? (root.hovered ? colBackgroundToggledHover : colBackgroundToggled) 
+        : (root.hovered ? colBackgroundHover : colBackground), 
+        root.enabled ? 0 : 1
+    )
+    property color rippleColor: root.toggled ? colRippleToggled : colRipple
+
+    function startRipple(x, y) {
+        const stateY = buttonBackground.y;
+        rippleAnim.x = x;
+        rippleAnim.y = y - stateY;
+
+        const dist = (ox, oy) => ox*ox + oy*oy;
+        const stateEndY = stateY + buttonBackground.height;
+        rippleAnim.radius = Math.sqrt(
+            Math.max(
+                dist(0, stateY), dist(0, stateEndY), dist(width, stateY), dist(width, stateEndY)
+            ));
+
+        rippleFadeAnim.complete();
+        rippleAnim.restart();
+    }
+
+    component RippleAnim: NumberAnimation {
+        duration: root.rippleDuration
+        easing.type: Appearance?.animation.elementMoveEnter.type
+        easing.bezierCurve: Appearance?.animationCurves.standardDecel
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: root.pointingHandCursor ? Qt.PointingHandCursor : Qt.ArrowCursor
+        acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+        onPressed: event => {
+            if (event.button === Qt.RightButton) {
+                if (root.altAction) root.altAction(event);
+                return;
+            }
+            if (event.button === Qt.MiddleButton) {
+                if (root.middleClickAction) root.middleClickAction(event);
+                return;
+            }
+            root.down = true;
+            if (root.downAction) root.downAction();
+            if (!root.rippleEnabled) return;
+            const { x, y } = event;
+            root.startRipple(x, y);
+        }
+        onReleased: event => {
+            root.down = false;
+            if (event.button != Qt.LeftButton) return;
+            if (root.releaseAction) root.releaseAction();
+            root.click();
+            if (!root.rippleEnabled) return;
+            rippleFadeAnim.restart();
+        }
+        onCanceled: event => {
+            root.down = false;
+            if (!root.rippleEnabled) return;
+            rippleFadeAnim.restart();
+        }
+    }
+
+    RippleAnim {
+        id: rippleFadeAnim
+        duration: root.rippleDuration * 2
+        target: ripple
+        property: "opacity"
+        to: 0
+    }
+
+    SequentialAnimation {
+        id: rippleAnim
+
+        property real x
+        property real y
+        property real radius
+
+        PropertyAction {
+            target: ripple
+            property: "x"
+            value: rippleAnim.x
+        }
+        PropertyAction {
+            target: ripple
+            property: "y"
+            value: rippleAnim.y
+        }
+        PropertyAction {
+            target: ripple
+            property: "opacity"
+            value: 1
+        }
+        ParallelAnimation {
+            RippleAnim {
+                target: ripple
+                properties: "implicitWidth,implicitHeight"
+                from: 0
+                to: rippleAnim.radius * 2
+            }
+        }
+    }
+    background: Rectangle {
+        id: buttonBackground
+        radius: root.buttonEffectiveRadius
+        implicitHeight: 30
+
+        color: root.buttonColor
+        Behavior on color {
+            animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
+        }
+        layer.enabled: true
+        layer.effect: OpacityMask {
+            maskSource: Rectangle {
+                width: buttonBackground.width
+                height: buttonBackground.height
+                radius: root.buttonEffectiveRadius
+            }
+        }
+        Item {
+            id: ripple
+            width: ripple.implicitWidth
+            height: ripple.implicitHeight
+            opacity: 0
+            visible: width > 0 && height > 0
+
+            property real implicitWidth: 0
+            property real implicitHeight: 0
+
+            Behavior on opacity {
+                animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
+            }
+
+            RadialGradient {
+                anchors.fill: parent
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: root.rippleColor}
+                    GradientStop { position: 0.3; color: root.rippleColor}
+                    GradientStop { position: 0.5; color: Qt.rgba(root.rippleColor.r, root.rippleColor.g, root.rippleColor.b, 0)}
+                }
+            }
+
+            transform: Translate {
+                x: -ripple.width / 2
+                y: -ripple.height / 2
+            }
+        }
+    }
+    contentItem: StyledText {
+        text: root.buttonText
+    }
 }

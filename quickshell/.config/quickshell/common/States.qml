@@ -12,7 +12,7 @@ Singleton {
     property bool showBar: true;
     property bool superDown: false;
     property bool screenLocked: false;
-    onMediaPopupOpenChanged: console.log(`Media Popup state changed, current state: ${mediaPopupOpen}`);
+    property bool powerMenuOpen: false;
 
     GlobalShortcut {
         name: "workspaceNumber";

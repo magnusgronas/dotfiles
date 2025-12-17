@@ -92,11 +92,19 @@ Item {
 
     MouseArea {
         anchors.fill: parent
+        z: 999
         acceptedButtons: Qt.BackButton
+        cursorShape: Qt.PointingHandCursor
+        hoverEnabled: true
         onPressed: event => {
             if (event.button === Qt.BackButton) {
                 Hyprland.dispatch(`togglespecialworkspace`);
             }
+        }
+        onEntered: showNumbersTimer.restart();
+        onExited: {
+            showNumbersTimer.stop();
+            root.showNumbers = false;
         }
     }
 

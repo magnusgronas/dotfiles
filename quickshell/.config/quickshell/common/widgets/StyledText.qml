@@ -1,6 +1,8 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 
+import qs.common
+
 Text {
     id: root
     property bool animateChange: false
@@ -11,11 +13,12 @@ Text {
     verticalAlignment: Text.AlignVCenter
     font {
         hintingPreference: Font.PreferDefaultHinting
-        family: "Noto Sans Nerd"
-        pixelSize: 16
+        family: Appearance.font.family.main
+        pixelSize: Appearance.font.size.small
+        variableAxes: Appearance.font.variableAxes.main
     }
-    color: "#e3e2e9"
-    linkColor: "#b3c5ff"
+    color: Appearance.m3colors.m3onBackground
+    linkColor: Appearance.colors.colPrimary
 
     component Anim: NumberAnimation {
         target: root

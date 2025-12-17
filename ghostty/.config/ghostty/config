@@ -1,5 +1,7 @@
 theme = matugen.theme
 
+class = ghostty
+
 background-opacity = 1
 
 gtk-titlebar = false

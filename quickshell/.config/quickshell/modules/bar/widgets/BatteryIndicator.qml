@@ -4,6 +4,7 @@ import QtQuick.Layouts
 
 import qs.services
 import qs.common.widgets
+import qs.common
 
 // TODO: MAKE PART OF GLOBAL CONFIG
 MouseArea {
@@ -29,25 +30,23 @@ MouseArea {
         anchors.centerIn: parent
         value: root.percentage
         highlightColor: Battery.statusColor
-        valueBarWidth: 30
-        fontSize: 14
         RowLayout {
             anchors.centerIn: parent
-            spacing: 0
+            spacing: -2
 
             MaterialSymbol {
                 id: boltIcon
-                Layout.leftMargin: -4
-                Layout.rightMargin: -2
+                Layout.leftMargin: -2
                 fill: 1
                 text: "bolt"
                 iconSize: batteryProgress.fontSize
-                color: "#070A07"
+                color: Appearance.colors.colSurface
                 visible: root.isCharging && root.percentage < 1
             }
-            Text {
+            StyledText {
                 text: batteryProgress.text
                 font.pixelSize: batteryProgress.fontSize
+                color: Appearance.colors.colSurface
             }
         }
     }

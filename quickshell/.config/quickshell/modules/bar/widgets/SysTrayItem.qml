@@ -31,6 +31,7 @@ MouseArea {
     StyledPopup {
         id: tooltip
         hoverTarget: root
+        isTrayPopup: true
         StyledText {
             text: root.item.title || root.item.tooltipTitle
             anchors.centerIn: parent

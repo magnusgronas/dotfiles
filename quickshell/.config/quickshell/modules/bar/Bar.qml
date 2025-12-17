@@ -72,11 +72,11 @@ Scope {
                             right: parent.right
                             top: barConent.bottom
                         }
-                        height: 23
+                        height: 30
                         active: true
 
                         sourceComponent: Item {
-                            implicitHeight: 23
+                            implicitHeight: 30
                             RoundCorner {
                                 id: leftCorner
                                 anchors {
@@ -85,7 +85,7 @@ Scope {
                                     left: parent.left
                                 }
 
-                                implicitSize: 23
+                                implicitSize: 30
                                 color: "#121318"
                                 corner: RoundCorner.CornerEnum.TopLeft
                             }
@@ -96,7 +96,7 @@ Scope {
                                     top: parent.top
                                     bottom: undefined
                                 }
-                                implicitSize: 23
+                                implicitSize: 30
                                 color: "#121318"
 
                                 corner: RoundCorner.CornerEnum.TopRight

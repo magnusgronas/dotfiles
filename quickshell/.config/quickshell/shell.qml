@@ -3,6 +3,7 @@ import qs.calculator
 import qs.modules.osd
 import qs.modules.bar
 import qs.modules.bar.widgets
+import qs.modules.powermenu
 import qs.modules.corners
 
 ShellRoot {
@@ -11,5 +12,6 @@ ShellRoot {
     LazyLoader { active: true; component: Bar {} }
     LazyLoader { active: false; component: Calculator {} }
     LazyLoader { active: true; component: Corners {}}
+    LazyLoader { active: true; component: PowerMenu {}}
 }
 

@@ -1,6 +1,5 @@
 return {
     "saghen/blink.cmp",
-    -- optional: provides snippets for the snippet source
     event = "InsertEnter",
     dependencies = {
         {
@@ -79,21 +78,21 @@ return {
                 scrollbar = true,
                 border = "none",
                 draw = {
-                    padding = 2,
-                    columns = {
-                        { "kind_icon" },
-                        { "label",    gap = 2, "kind" },
-                    },
-                    components = {
-                        label = {
-                            text = function(ctx)
-                                return require("colorful-menu").blink_components_text(ctx)
-                            end,
-                            highlight = function(ctx)
-                                return require("colorful-menu").blink_components_highlight(ctx)
-                            end,
-                        },
-                    },
+                    -- padding = 2,
+                    -- columns = {
+                    --     { "kind_icon" },
+                    --     { "label",    gap = 2, "kind" },
+                    -- },
+                    -- components = {
+                    --     label = {
+                    --         text = function(ctx)
+                    --             return require("colorful-menu").blink_components_text(ctx)
+                    --         end,
+                    --         highlight = function(ctx)
+                    --             return require("colorful-menu").blink_components_highlight(ctx)
+                    --         end,
+                    --     },
+                    -- },
                 },
                 cmdline_position = function()
                     local row, col
@@ -112,7 +111,7 @@ return {
             documentation = {
                 auto_show = true,
                 window = {
-                    border = "rounded",
+                    border = "none",
                 },
             },
             ghost_text = {
