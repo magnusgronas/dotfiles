@@ -17,7 +17,6 @@ fd
 firefox
 flameshot
 fzf
-gdm
 gemini-cli
 ghostty
 gimp
@@ -40,7 +39,6 @@ intel-ucode
 iwd
 jdk-openjdk
 kitty
-konsole
 kvantum
 lazygit
 less
@@ -68,7 +66,6 @@ nwg-displays
 nwg-look
 obsidian
 oh-my-posh-bin
-os-prober
 papirus-icon-theme
 pavucontrol
 pipewire
@@ -113,11 +110,9 @@ qt6-websockets
 qt6-webview
 qt6ct
 quickshell-git
-r-quick-share
 rofi
 rust
 sioyek
-slurp
 smartmontools
 sof-firmware
 spotify
