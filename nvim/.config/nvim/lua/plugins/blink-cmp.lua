@@ -76,23 +76,23 @@ return {
                 max_height = 20,
                 min_width = 20,
                 scrollbar = true,
-                border = "none",
+                -- border = "none",
                 draw = {
-                    -- padding = 2,
-                    -- columns = {
-                    --     { "kind_icon" },
-                    --     { "label",    gap = 2, "kind" },
-                    -- },
-                    -- components = {
-                    --     label = {
-                    --         text = function(ctx)
-                    --             return require("colorful-menu").blink_components_text(ctx)
-                    --         end,
-                    --         highlight = function(ctx)
-                    --             return require("colorful-menu").blink_components_highlight(ctx)
-                    --         end,
-                    --     },
-                    -- },
+                    padding = 2,
+                    columns = {
+                        { "kind_icon" },
+                        { "label",    gap = 2, "kind" },
+                    },
+                    components = {
+                        label = {
+                            text = function(ctx)
+                                return require("colorful-menu").blink_components_text(ctx)
+                            end,
+                            highlight = function(ctx)
+                                return require("colorful-menu").blink_components_highlight(ctx)
+                            end,
+                        },
+                    },
                 },
                 cmdline_position = function()
                     local row, col

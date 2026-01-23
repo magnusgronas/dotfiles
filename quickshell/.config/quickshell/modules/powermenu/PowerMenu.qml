@@ -12,6 +12,7 @@ import QtQuick.Layouts
 import qs.services
 import qs.common
 import qs.common.widgets
+import qs.common.functions
 
 Scope {
     id: root
@@ -47,6 +48,14 @@ Scope {
         downloadProcIsRunning.running = false
         downloadProcIsRunning.running = true
 
+    }
+
+    Keys.onPressed: (event) => {
+        if (event.key === Qt.Key_Escape) {
+            States.powerMenuOpen = false;
+            // button.clicked();
+            event.accepted = true;
+        }
     }
 
     Process {
@@ -93,7 +102,7 @@ Scope {
             WlrLayershell.layer: WlrLayer.Overlay
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
-            color: ColorUtils.transparantize(Appearance.m3colors.m3background, 0.04)
+            color: ColorUtils.transparentize(Appearance.m3colors.m3background, 0.6)
             
             anchors {
                 top: true
@@ -128,7 +137,6 @@ Scope {
                         Layout.alignment: Qt.AlignHCenter
                         horizontalAlignment: Text.AlignHCenter
                         font {
-                            family: Appearance.font.family.title
                             pixelSize: Appearance.font.size.title
                             variableAxes: Appearance.font.variableAxes.title
                         }
@@ -147,7 +155,36 @@ Scope {
                     columnSpacing: 15
                     rowSpacing: 15
 
-                    // TODO: Make `PowerMenuButton.qml`
+                    PowerMenuButton {
+                        id: shutdown
+                        focus: menuRoot.visible
+                        buttonIcon: "power_settings_new"
+                        buttonText: "Shutdown"
+                        onClicked: {
+                            Session.shutdown();
+                            menuRoot.hide();
+                        }
+                        onFocusChanged: {
+                            if (focus) menuRoot.subtitle = buttonText;
+                        }
+                        KeyNavigation.right: reboot
+                        KeyNavigation.down: hibernate
+                    }
+                    PowerMenuButton {
+                        id: reboot
+                        focus: menuRoot.visible
+                        buttonIcon: "restart_alt"
+                        buttonText: "Reboot"
+                        onClicked: {
+                            Session.reboot();
+                            menuRoot.hide();
+                        }
+                        onFocusChanged: {
+                            if (focus) menuRoot.subtitle = buttonText;
+                        }
+                        KeyNavigation.right: lock
+                        KeyNavigation.down: logout
+                    }
                     PowerMenuButton {
                         id: lock
                         focus: menuRoot.visible
@@ -160,17 +197,94 @@ Scope {
                         onFocusChanged: {
                             if (focus) menuRoot.subtitle = buttonText;
                         }
-                        // KeyNavigation.left:
+                        KeyNavigation.right: sleep
+                        KeyNavigation.down: firmware
+                    }
+                    PowerMenuButton {
+                        id: sleep
+                        focus: menuRoot.visible
+                        buttonIcon: "dark_mode"
+                        buttonText: "Sleep"
+                        onClicked: {
+                            Session.suspend();
+                            menuRoot.hide();
+                        }
+                        onFocusChanged: {
+                            if (focus) menuRoot.subtitle = buttonText;
+                        }
+                        KeyNavigation.down: taskManager
+                    }
+                    PowerMenuButton {
+                        id: hibernate
+                        focus: menuRoot.visible
+                        buttonIcon: "ac_unit"
+                        buttonText: "Hibernate"
+                        onClicked: {
+                            Session.hibernate();
+                            menuRoot.hide();
+                        }
+                        onFocusChanged: {
+                            if (focus) menuRoot.subtitle = buttonText;
+                        }
+                        KeyNavigation.right: logout
+                    }
+                    PowerMenuButton {
+                        id: logout
+                        focus: menuRoot.visible
+                        buttonIcon: "logout"
+                        buttonText: "Logout"
+                        onClicked: {
+                            Session.logout();
+                            menuRoot.hide();
+                        }
+                        onFocusChanged: {
+                            if (focus) menuRoot.subtitle = buttonText;
+                        }
+                        KeyNavigation.right: firmware
+                    }
+                    PowerMenuButton {
+                        id: firmware
+                        focus: menuRoot.visible
+                        buttonIcon: "settings_applications"
+                        buttonText: "Reboot to firmware settings"
+                        onClicked: {
+                            Session.rebootToFirmware();
+                            menuRoot.hide();
+                        }
+                        onFocusChanged: {
+                            if (focus) menuRoot.subtitle = buttonText;
+                        }
+                        KeyNavigation.right: taskManager
+                    }
+                    PowerMenuButton {
+                        id: taskManager
+                        focus: menuRoot.visible
+                        buttonIcon: "browse_activity"
+                        buttonText: "Open Task Manager"
+                        onClicked: {
+                            Session.launchTaskManager();
+                            menuRoot.hide();
+                        }
+                        onFocusChanged: {
+                            if (focus) menuRoot.subtitle = buttonText;
+                        }
+                    }
+
+                }
+                StyledText {
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.topMargin: 20
+                    text: menuRoot.subtitle
+                    font {
+                        pixelSize: Appearance.font.size.large
+                        variableAxes: Appearance.font.variableAxes.round
                     }
                 }
-
             }
             Description {
                 Layout.alignment: Qt.AlignHCenter
                 text: menuRoot.subtitle
             }
-
-
         }
     }
 }

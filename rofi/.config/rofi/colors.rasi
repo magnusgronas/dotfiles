@@ -38,7 +38,7 @@
     inverse-on-surface: rgba(47, 48, 54, 1);
     inverse-primary: rgba(73, 93, 146, 1);
     surface-dim: rgba(18, 19, 24, 1);
-    surface-bright: rgba(56, 57, 63, 0);
+    surface-bright: rgba(56, 57, 63, 0.1);
     surface-container-lowest: rgba(13, 14, 19, 1);
     surface-container-low: rgba(26, 27, 33, 1);
     surface-container: rgba(30, 31, 37, 1);

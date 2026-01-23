@@ -24,7 +24,7 @@ Singleton {
     m3colors: QtObject {
         property bool darkmode: true
         property bool transparent: false
-        property color m3background: "{{ colors.primary.default.hex }}"
+        property color m3background: "{{ colors.background.default.hex }}"
         property color m3error: "{{ colors.error.default.hex}}"
         property color m3errorContainer: "{{colors.error_container.default.hex}}"
         property color m3inverseOnSurface: "{{colors.inverse_on_surface.default.hex}}"

@@ -1,4 +1,5 @@
-theme = matugen.theme
+# theme = matugen.theme
+theme = TokyoNight Moon
 
 class = ghostty
 

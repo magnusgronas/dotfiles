@@ -15,6 +15,7 @@ opt.laststatus = 3
 opt.ruler = false
 -- opt.winborder = "rounded"
 
+opt.pumborder = vim.o.winborder
 -- HACK: hide cursor line but still highlight current linenumber
 opt.cursorline = true
 -- vim.cmd("highlight CursorLine ctermbg=235 guibg=NONE")

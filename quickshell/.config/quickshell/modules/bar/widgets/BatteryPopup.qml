@@ -11,7 +11,7 @@ StyledPopup {
     ColumnLayout {
         id: columnLayout
         anchors.centerIn: parent
-        spacing: 4
+        // spacing: 4
 
         // Header
         Row {
@@ -19,22 +19,37 @@ StyledPopup {
             spacing: 5
 
             MaterialSymbol {
-                anchors.verticalCenter: parent.verticalCenter
+                // anchors.verticalCenter: parent.verticalCenter
                 fill: 0
-                font.weight: Font.Medium
                 text: "battery_android_full"
-                iconSize: 17
+                iconSize: 20
                 color: "#c5c6d0"
             }
 
             StyledText {
+                id: headerText
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Battery"
+                text: `${Math.round(Battery.percentage * 100)} %`
                 font {
-                    weight: Font.Medium
-                    pixelSize: 13
+                    weight: Font.DemiBold
+                    pixelSize: 18
                 }
                 color: "#c5c6d0"
+            }
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            MaterialSymbol {
+                text: "charger"
+                color: "#c5c6d0"
+                fill: 1
+                iconSize: 20
+            }
+            StyledText {
+                text: Battery.currentPowerProfile
+                color: "#c5c6d0"
+                font.pixelSize: 16
             }
         }
 
@@ -58,16 +73,19 @@ StyledPopup {
             MaterialSymbol {
                 text: "schedule"
                 color: "#c5c6d0"
-                iconSize: 17
+                fill: 1
+                iconSize: 20
             }
             StyledText {
                 text: Battery.isCharging ? "Time to full:" : "Time to empty:"
                 color: "#c5c6d0"
+                font.pixelSize: 16
             }
             StyledText {
                 Layout.fillWidth: true
                 horizontalAlignment: Text.AlignRight
                 color: "#c5c6d0"
+                font.pixelSize: 16
                 text: {
                     function formatTime(seconds) {
                         var h = Math.floor(seconds / 3600);
@@ -101,7 +119,8 @@ StyledPopup {
             MaterialSymbol {
                 text: "bolt"
                 color: "#c5c6d0"
-                iconSize: 17
+                fill: 1
+                iconSize: 20
             }
 
             StyledText {
@@ -115,12 +134,14 @@ StyledPopup {
                     }
                 }
                 color: "#c5c6d0"
+                font.pixelSize: 16
             }
 
             StyledText {
                 Layout.fillWidth: true
                 horizontalAlignment: Text.AlignRight
                 color: "#c5c6d0"
+                font.pixelSize: 16
                 text: {
                     if (Battery.chargeState == 4) {
                         return "";

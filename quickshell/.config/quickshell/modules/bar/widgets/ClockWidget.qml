@@ -21,6 +21,10 @@ Item {
 
         StyledText {
             font.pixelSize: Appearance?.font.size.huge
+            font.variableAxes: ({
+                "wdth": 110,
+                "ROND": 100
+            })
             color: "#e3e2e9"
             text: DateTime.time
         }

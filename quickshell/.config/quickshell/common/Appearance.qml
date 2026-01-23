@@ -24,7 +24,7 @@ Singleton {
     m3colors: QtObject {
         property bool darkmode: true
         property bool transparent: false
-        property color m3background: "#b2c5ff"
+        property color m3background: "#121318"
         property color m3error: "#ffb4ab"
         property color m3errorContainer: "#93000a"
         property color m3inverseOnSurface: "#2f3036"
@@ -80,7 +80,7 @@ Singleton {
 
     colors: QtObject {
         property color colSubtext: m3colors.m3outline
-        property color colLayer0: ColorUtils.mix(ColorUtils.transparentize(m3colors.m3background, root.backgroundTransparency), m3colors.m3primary, false ? 0.99 : 1)
+        property color colLayer0: ColorUtils.mix(ColorUtils.transparentize(m3colors.m3background, root.backgroundTransparency), m3colors.m3primary, Config.options.appearance.extraBackgroundTint ? 0.99 : 1)
         property color colOnLayer0: m3colors.m3onBackground
         property color colLayer0Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer0, colOnLayer0, 0.9, root.contentTransparency))
         property color colLayer0Active: ColorUtils.transparentize(ColorUtils.mix(colLayer0, colOnLayer0, 0.8, root.contentTransparency))
@@ -290,7 +290,6 @@ Singleton {
     font: QtObject {
         property QtObject family: QtObject {
             property string main: "Google Sans Flex"
-            property string title: "Google Sans Flex"
             property string materialSymbol: "Material Symbols Rounded"
             property string nerdIcon: "JetBrainsMono NF"
             property string mono: "JetBrainsMono NF"
@@ -304,18 +303,22 @@ Singleton {
                 "wght": 450
             })
             property var title: ({
-                "wght": 550
+                "wght": 550,
+                "ROND": 100
+            })
+            property var round: ({
+                "ROND": 100
             })
         }
         property QtObject size: QtObject {
-            property int smallest: 10
-            property int smaller: 12
-            property int small: 14
-            property int normal: 16
-            property int large: 18
-            property int larger: 19
-            property int largest: 22
-            property int huge: 23
+            property int smallest: 12
+            property int smaller: 14
+            property int small: 16
+            property int normal: 18
+            property int large: 20
+            property int larger: 21
+            property int largest: 24
+            property int huge: 25
             property int title: largest
         }
     }
@@ -327,6 +330,6 @@ Singleton {
         property real roundCornerSize: 30
         property real trayItem: 22
         property real osIcon: 26
-        property real powerMenuButton: 120
+        property real powerMenuButton: 100
     }
 }

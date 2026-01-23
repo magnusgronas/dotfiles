@@ -7,7 +7,7 @@ import qs.common.widgets
 // TODO: MAKE PART OF GLOBAL CONFIG
 StyledPopup {
     id: root
-    property string formattedDate: Qt.formatDateTime(DateTime.clock.date, "dddd, MMMM dd, yyyy")
+    property string formattedDate: Qt.locale().toString(DateTime.clock.date, "dddd dd. MMMM yyyy")
     property string formattedTime: DateTime.time
     property string formattedUptime: DateTime.uptime
     property string todosSection: getUpcommingTodos()

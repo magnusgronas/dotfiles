@@ -7,9 +7,9 @@ import Quickshell.Io
 Singleton {
 
     id: root
-    property string time: Qt.formatDateTime(clock.date, "hh:mm")
-    property string shortDate: Qt.formatDateTime(clock.date, "dd.MM")
-    property string date: Qt.formatDateTime(clock.date, "dddd, dd.MM")
+    property string time: Qt.locale().toString(clock.date, "hh:mm")
+    property string shortDate: Qt.locale().toString(clock.date, "dd.MM")
+    property string date: Qt.locale().toString(clock.date, "dddd, dd.MM")
     property var uptime: ""
 
     property var clock: SystemClock {

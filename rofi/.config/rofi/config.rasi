@@ -24,6 +24,7 @@ configuration {
 
 window {
     background-color: @surface-bright;
+    // opacity: 0.2;
     transparency: "real";
     location: center;
     width: 1000px;

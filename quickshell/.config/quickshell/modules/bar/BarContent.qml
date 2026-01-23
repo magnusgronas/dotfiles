@@ -9,6 +9,7 @@ import QtQuick.Layouts
 import qs.common.widgets
 import qs.modules.bar
 import qs.modules.bar.widgets
+import qs.modules.bar.widgets.tray
 
 Item {
     id: root

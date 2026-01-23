@@ -38,7 +38,7 @@
     inverse-on-surface: {{colors.inverse_on_surface.default.rgba}};
     inverse-primary: {{colors.inverse_primary.default.rgba}};
     surface-dim: {{colors.surface_dim.default.rgba}};
-    surface-bright: {{colors.surface_bright.default.rgba | set_alpha: 0.4}};
+    surface-bright: {{colors.surface_bright.default.rgba | set_alpha: 0.1 }};
     surface-container-lowest: {{colors.surface_container_lowest.default.rgba}};
     surface-container-low: {{colors.surface_container_low.default.rgba}};
     surface-container: {{colors.surface_container.default.rgba}};

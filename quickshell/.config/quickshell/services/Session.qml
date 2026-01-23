@@ -27,14 +27,14 @@ Singleton {
     }
 
     function launchTaskManager() {
-        Quickshell.execDetached(["bash", "-c", "btop"]);
+        Quickshell.execDetached(["ghostty", "-e", "btop"]);
     }
 
     function hibernate() {
-        Quickshell.execDetached(["bash", "-c", "systemctl suspend"]);
+        Quickshell.execDetached(["bash", "-c", "systemctl hybrid-sleep"]);
     }
 
-    function powerOff() {
+    function shutdown() {
         Quickshell.execDetached(["bash", "-c", "systemctl poweroff"]);
     }
 
@@ -45,7 +45,7 @@ Singleton {
 
     function rebootToFirmware() {
         closeAllWindows();
-        Quickshell.execDetached(["bash", "-c", "sysetmctl reboot --firmware-setup"]);
+        Quickshell.execDetached(["bash", "-c", "systemctl reboot --firmware-setup"]);
     }
 }
 

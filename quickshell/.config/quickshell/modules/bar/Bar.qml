@@ -15,8 +15,6 @@ import qs.common
 Scope {
     id: root
 
-    // NOTE: Variants makes the module get copied for each specified "model",
-    // here the PanelWindow will be copied for every item in Quickshell.screens
     Variants {
         model: Quickshell.screens
 
