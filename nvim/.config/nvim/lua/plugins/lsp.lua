@@ -17,6 +17,7 @@ return {
             "kotlin_lsp",
             "qmlls",
             "ts_ls",
+            "tailwindcss"
 		},
 	},
 	dependencies = {

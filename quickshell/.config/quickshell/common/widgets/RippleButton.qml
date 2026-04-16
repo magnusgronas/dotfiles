@@ -25,7 +25,7 @@ Button {
 
     property color colBackground: ColorUtils.transparentize(Appearance?.colors.colLayer1Hover, 1) || "transparent"
     property color colBackgroundHover: Appearance.colors.colLayer1Hover
-    property color colBackgroundToggled: Appearance.colors.primary
+    property color colBackgroundToggled: Appearance.colors.colPrimary
     property color colBackgroundToggledHover: Appearance.colors.colPrimaryHover
     property color colRipple: Appearance.colors.colLayer1Active
     property color colRippleToggled: Appearance.colors.colPrimaryActive

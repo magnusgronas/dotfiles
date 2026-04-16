@@ -74,14 +74,14 @@ MouseArea {
                 fill: 1
                 text: "bolt"
                 iconSize: batteryProgress.fontSize
-                color: Appearance.colors.colSurface
+                color: Appearance.m3colors.m3surface
                 visible: root.isCharging && root.percentage < 1
             }
             StyledText {
                 Layout.topMargin: 4
                 text: batteryProgress.text
                 font.pixelSize: batteryProgress.fontSize
-                color: Appearance.colors.colSurface
+                color: Appearance.m3colors.m3surface
             }
         }
     }

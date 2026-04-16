@@ -35,7 +35,6 @@ MouseArea {
     }
     onEntered: {
         tooltip.text = getTooltipForItem(root.item)
-
     }
 
     function getTooltipForItem(item) {

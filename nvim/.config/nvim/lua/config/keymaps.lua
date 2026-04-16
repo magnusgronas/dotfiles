@@ -54,10 +54,10 @@ map("<leader>se", "<C-w>=", { desc = "Make splits equal" })
 map("<leader>sx", ":close<CR>", { desc = "Close split" })
 
 -- Move splits
--- map("<C-S-k>", "<C-w>K")
--- map("<C-S-j>", "<C-w>J")
--- map("<C-S-h>", "<C-w>H")
--- map("<C-S-l>", "<C-w>L")
+map("<C-k>", "<C-w>k")
+map("<C-j>", "<C-w>j")
+map("<C-h>", "<C-w>h")
+map("<C-l>", "<C-w>l")
 
 -- Stay in indent mode
 map("<", "<gv", {}, { "v" })

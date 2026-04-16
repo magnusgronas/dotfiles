@@ -14,9 +14,9 @@ return {
                     -- sidebars = "transparent",
                 },
                 cache = true,
-                -- on_colors = function(colors)
-                --     colors.bg_statusline = colors.none
-                -- end,
+                on_colors = function(colors)
+                    colors.bg_statusline = colors.none
+                end,
                 plugins = {
                     auto = true,
                 }

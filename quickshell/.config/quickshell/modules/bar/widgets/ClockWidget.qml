@@ -30,7 +30,7 @@ Item {
         }
         StyledText {
             font.pixelSize: Appearance?.font.size.large
-            font.family: Appearance?.font.family.iconNerd
+            font.family: Appearance?.font.family.nerdIcon
             Layout.topMargin: 4
             color: "#e3e2e9"
             text: "󰧞"
