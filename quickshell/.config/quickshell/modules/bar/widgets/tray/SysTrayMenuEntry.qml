@@ -16,25 +16,27 @@ RippleButton {
     required property QsMenuEntry menuEntry
     property bool forceIconColumn: false
     property bool forceSpecialInteractionColumn: false
-    readonly property bool hasIcon: menuEntry.icon.length > 0
-    readonly property bool hasSpecialInteraction: menuEntry.buttonType !== QsMenuButtonType.None
+
+    readonly property bool isSeparator: menuEntry?.isSeparator ?? false
+    readonly property bool hasIcon: (menuEntry?.icon.length ?? 0) > 0
+    readonly property bool hasSpecialInteraction: (menuEntry?.buttonType ?? QsMenuButtonType.None) !== QsMenuButtonType.None
 
     signal dismiss()
     signal openSubmenu(handle: QsMenuHandle)
 
     colBackground: menuEntry.isSeparator ? Appearance.m3colors.m3outlineVariant : ColorUtils.transparentize(Appearance.colors.colLayer0)
-    enabled: !menuEntry.isSeparator
+    enabled: !root.isSeparator
     opacity: 1
 
     horizontalPadding: 12
     implicitWidth: contentItem.implicitWidth + horizontalPadding * 2
-    implicitHeight: menuEntry.isSeparator ? 1 : 36
-    Layout.topMargin: menuEntry.isSeparator ? 4 : 0
-    Layout.bottomMargin: menuEntry.isSeparator ? 4 : 0
+    implicitHeight: root.isSeparator ? 1 : 36
+    Layout.topMargin: root.isSeparator ? 4 : 0
+    Layout.bottomMargin: root.isSeparator ? 4 : 0
     Layout.fillWidth: true
 
     Component.onCompleted: {
-        if (menuEntry.isSeparator) root.buttonColor = root.colBackground;
+        if (root.isSeparator) root.buttonColor = root.colBackground;
     }
 
     releaseAction: () => {
@@ -51,7 +53,7 @@ RippleButton {
     }
 
     contentItem: RowLayout {
-        id:contentItem
+        id: contentItem
         anchors {
             verticalCenter: parent.verticalCenter
             left: parent.left
@@ -61,7 +63,7 @@ RippleButton {
         }
 
         spacing: 8
-        visible: !root.menuEntry.isSeparator
+        visible: !root.isSeparator
 
         // Interaction: checkbox or radio button
         Item {
@@ -71,7 +73,7 @@ RippleButton {
 
             Loader {
                 anchors.fill: parent
-                active: root.menuEntry.buttonType === QsMenuButtonType.RadioButton
+                active: (root.menuEntry?.buttonType ?? QsMenuButtonType.None) === QsMenuButtonType.RadioButton
 
                 sourceComponent: StyledRadioButton {
                     enabled: false
@@ -82,7 +84,7 @@ RippleButton {
 
             Loader {
                 anchors.fill: parent
-                active: root.menuEntry.buttonType === QsMenuButtonType.CheckBox && root.menuEntry.checkState !== Qt.Unchecked
+                active: (root.menuEntry?.buttonType ?? QsMenuButtonType.None) === QsMenuButtonType.CheckBox && (root.menuEntry?.checkState ?? Qt.Unchecked) !== Qt.Unchecked 
 
                 sourceComponent: MaterialSymbol {
                     text: root.menuEntry.checkState === Qt.PartiallyChecked ? "check_indeterminate_small" : "check"
@@ -90,6 +92,7 @@ RippleButton {
                 }
             }
         }
+
         Item {
             visible: root.hasIcon || root.forceIconColumn
             implicitWidth: 20
@@ -108,15 +111,15 @@ RippleButton {
         }
         StyledText {
             id: label
-            text: root.menuEntry.text
-            font.pixelSize: Appearance.font.size.smallest
+            text: root.menuEntry.text ?? ""
+            font.pixelSize: Appearance.font.size.normal
             Layout.fillWidth: true
         }
 
         Loader {
-            active: root.menuEntry.hasChildren
+            active: root.menuEntry?.hasChildren ?? false
             sourceComponent: MaterialSymbol {
-                text: "chevron_rigth"
+                text: "chevron_right"
                 iconSize: 20
             }
         }

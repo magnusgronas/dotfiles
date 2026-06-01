@@ -7,7 +7,6 @@ RippleButton {
     id: root
 
     property string buttonIcon
-    property string buttonText
     property bool keyboardDown: false
     property real size: Appearance.sizes.powerMenuButton
 

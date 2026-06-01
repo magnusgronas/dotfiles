@@ -44,7 +44,6 @@ Item {
             leftMargin: 35
         }
 
-
         RowLayout {
             id: leftSideRowLayout
             anchors.fill: parent
@@ -73,13 +72,10 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             implicitWidth: root.centerSideModuleWidth
 
-            SystemTray {}
-
             Media {
                 Layout.leftMargin: 5
                 Layout.fillWidth: true
             }
-
         }
 
         BarGroup {
@@ -101,6 +97,9 @@ Item {
             BarGroup {
                 id: rightCenterGroupContent
                 anchors.fill: parent
+                
+                // TODO: TEST
+                WorkspacesNew {}
 
                 ClockWidget {
                     Layout.alignment: Qt.AlignVCenter
@@ -114,6 +113,7 @@ Item {
                 }
             }
         }
+        SysTray {}
     }
     MouseArea {
         id: rightSide

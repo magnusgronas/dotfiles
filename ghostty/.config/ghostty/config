@@ -1,15 +1,14 @@
-# theme = matugen.theme
-theme = TokyoNight Moon
+#theme=Matugen
+theme = TokyoNight Storm
 
 class = ghostty
 
-background-opacity = 1
+background-opacity = 0.8
 
 gtk-titlebar = false
 gtk-single-instance = true
 window-padding-x = 10
 window-padding-y = 4
-#adjust-cell-height = 8
 window-padding-balance = true
 window-padding-color = background
 

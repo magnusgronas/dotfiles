@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 
 import Quickshell.Services.SystemTray
+import Quickshell
 import Quickshell.Widgets
 
 import QtQuick
@@ -23,24 +24,29 @@ MouseArea {
     implicitHeight: 22
     implicitWidth: 22
 
-    onPressed: (event) => {
+    onPressed: event => {
         switch (event.button) {
         case Qt.LeftButton:
             item.activate();
             break;
         case Qt.RightButton:
-            if (item.hasMenu) menu.open();
+            if (item.hasMenu)
+                if (menu.active && menu.item && typeof menu.item.close === "function")
+                    menu.item.close();
+                else
+                    menu.open();
             break;
         }
+        event.accepted = true;
     }
     onEntered: {
-        tooltip.text = getTooltipForItem(root.item)
+        tooltip.text = getTooltipForItem(root.item);
     }
 
     function getTooltipForItem(item) {
-        var result = item.tooltipTitle.length > 0 ? item.tooltipTitle
-                : (item.title.length > 0 ? item.title : item.id);
-        if (item.tooltipDescription.length > 0) result += " • " + item.tooltipDescription;
+        var result = item.tooltipTitle.length > 0 ? item.tooltipTitle : (item.title.length > 0 ? item.title : item.id);
+        if (item.tooltipDescription.length > 0)
+            result += " • " + item.tooltipDescription;
         return result;
     }
 
@@ -50,19 +56,16 @@ MouseArea {
             menu.active = true;
         }
         active: false
-        sourceComponent: SystemTrayMenu {
-            Component.onCompleted: this.open();
+        sourceComponent: SysTrayMenu {
+            Component.onCompleted: this.open()
             trayItemMenuHandle: root.item.menu
+            trayItemId: root.item.id
             anchor {
-                window: root.QsWindow.window
-                rect.x: root.x + QsWindow.window?.width
-                rect.y: root.y + 0
-                rect.height: root.height
-                rect.width: root.width
-                edges: (Edges.Bottom | Edges.Right)
-                gravity: (Edges.Bottom | Edges.Right)
+                item: root
+                edges: Edges.Bottom
+                gravity: Edges.Bottom
             }
-            onMenuOpened: (window) => root.menuOpened(window);
+            onMenuOpened: window => root.menuOpened(window)
             onMenuClosed: {
                 root.menuClosed();
                 menu.active = false;
@@ -82,8 +85,9 @@ MouseArea {
         id: tooltip
         hoverTarget: root
         isTrayPopup: true
+        property string text: root.item.title || root.item.tooltipTitle
         StyledText {
-            text: root.item.title || root.item.tooltipTitle
+            text: tooltip.text
             anchors.centerIn: parent
         }
     }

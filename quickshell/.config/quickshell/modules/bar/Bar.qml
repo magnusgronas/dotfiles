@@ -34,7 +34,7 @@ Scope {
                 mask: Region {
                     item: hoverMaskRegion
                 }
-                
+
                 color: "transparent"
 
                 anchors {
@@ -84,10 +84,10 @@ Scope {
                                 }
 
                                 implicitSize: 30
-                                color: "#121318"
+                                color: Appearance.colors.colLayer0
                                 corner: RoundCorner.CornerEnum.TopLeft
                             }
-                            RoundCorner {
+                            RoundCorner {
                                 id: rightCorner
                                 anchors {
                                     right: parent.right
@@ -95,8 +95,7 @@ Scope {
                                     bottom: undefined
                                 }
                                 implicitSize: 30
-                                color: "#121318"
-
+                                color: Appearance.colors.colLayer0
                                 corner: RoundCorner.CornerEnum.TopRight
                             }
                         }

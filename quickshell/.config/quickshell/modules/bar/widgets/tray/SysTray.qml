@@ -22,7 +22,7 @@ Item {
                 values: SystemTray.items.values.filter(i => i.status !== Status.Passive)
             }
             SysTrayItem {
-                required property var modelData
+                required property SystemTrayItem modelData
                 item: modelData
                 Layout.fillWidth: true
                 onClicked: event => {

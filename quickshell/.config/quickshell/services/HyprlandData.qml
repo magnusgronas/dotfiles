@@ -117,8 +117,8 @@ Singleton {
             onStreamFinished: {
                 root.workspaces = JSON.parse(workspacesCollector.text);
                 let tempWorkspaceById = {};
-                for (var i = 0; i < root.workspaces.length; ++i) {
-                    var ws = root.workspaces[i];
+                for (let i = 0; i < root.workspaces.length; ++i) {
+                    let ws = root.workspaces[i];
                     tempWorkspaceById[ws.id] = ws;
                 }
                 root.workspaceById = tempWorkspaceById;

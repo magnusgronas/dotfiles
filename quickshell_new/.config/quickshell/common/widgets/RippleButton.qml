@@ -1,13 +1,15 @@
 pragma ComponentBehavior: Bound
 
+import qs.common
+import qs.common.functions
+import qs.common.widgets
+import Qt5Compat.GraphicalEffects
 import QtQuick
 import QtQuick.Controls
 
-import Qt5Compat.GraphicalEffects
-
-import qs.common.functions
-import qs.common
-
+/**
+ * A button with ripple effect similar to in Material Design.
+ */
 Button {
     id: root
     property bool toggled
@@ -18,22 +20,24 @@ Button {
     property real buttonEffectiveRadius: root.down ? root.buttonRadiusPressed : root.buttonRadius
     property int rippleDuration: 1200
     property bool rippleEnabled: true
-    property var downAction // When left clicking (down)
-    property var releaseAction // When left clicking (release)
-    property var altAction // When right clicking
-    property var middleClickAction // When middle clicking
+    property var downAction
+    property var releaseAction
+    property var altAction
+    property var middleClickAction
 
-    property color colBackground: ColorUtils.transparentize(Appearance?.colors.colLayer1Hover, 1) || "transparent"
-    property color colBackgroundHover: Appearance.colors.colLayer1Hover
-    property color colBackgroundToggled: Appearance.colors.colPrimary
-    property color colBackgroundToggledHover: Appearance.colors.colPrimaryHover
-    property color colRipple: Appearance.colors.colLayer1Active
-    property color colRippleToggled: Appearance.colors.colPrimaryActive
+    property color colBackground: ColorUtils.transparentize(Colors?.md3.surface, 1) || "transparent"
+    property color colBackgroundHover: Colors?.md3.surface_variant
+    property color colBackgroundToggled: Colors?.md3.primary
+    property color colBackgroundToggledHover: Colors?.md3.primary_fixed
+    property color colRipple: Colors?.md3.on_surface
+    property color colRippleToggled: Colors?.md3.on_primary
 
-    opacity: root.enabled ? 0.4 : 1
+    opacity: root.enabled ? 1 : 0.4
 
-    property color buttonColor: ColorUtils.transparentize(root.toggled ? (root.hovered ? colBackgroundToggledHover : colBackgroundToggled) : (root.hovered ? colBackgroundHover : colBackground), root.enabled ? 0 : 1)
+    property color buttonColor: ColorUtils.transparentize(root.toggled ? (root.isHovered ? colBackgroundToggledHover : colBackgroundToggled) : (root.isHovered ? colBackgroundHover : colBackground), root.enabled ? 0 : 1)
     property color rippleColor: root.toggled ? colRippleToggled : colRipple
+
+    readonly property bool isHovered: mouseArea.containsMouse
 
     function startRipple(x, y) {
         const stateY = buttonBackground.y;
@@ -55,7 +59,11 @@ Button {
     }
 
     MouseArea {
-        anchors.fill: parent
+        id: mouseArea
+        anchors.centerIn: parent
+        width: Math.max(parent.width, 20)
+        height: Math.max(parent.height, 20)
+        hoverEnabled: true
         cursorShape: root.pointingHandCursor ? Qt.PointingHandCursor : Qt.ArrowCursor
         acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
         onPressed: event => {
@@ -66,7 +74,7 @@ Button {
             }
             if (event.button === Qt.MiddleButton) {
                 if (root.middleClickAction)
-                    root.middleClickAction(event);
+                    root.middleClickAction();
                 return;
             }
             root.down = true;
@@ -74,11 +82,10 @@ Button {
                 root.downAction();
             if (!root.rippleEnabled)
                 return;
-            const {
-                x,
-                y
-            } = event;
-            root.startRipple(x, y);
+            const mappedX = event.x + mouseArea.x;
+            const mappedY = event.y + mouseArea.y;
+
+            root.startRipple(mappedX, mappedY);
         }
         onReleased: event => {
             root.down = false;
@@ -138,6 +145,7 @@ Button {
             }
         }
     }
+
     background: Rectangle {
         id: buttonBackground
         radius: root.buttonEffectiveRadius
@@ -145,8 +153,9 @@ Button {
 
         color: root.buttonColor
         Behavior on color {
-            animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
+            animation: Appearance?.animation.elementMoveFast.colorAnimation.createObject(this)
         }
+
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Rectangle {
@@ -155,6 +164,7 @@ Button {
                 radius: root.buttonEffectiveRadius
             }
         }
+
         Item {
             id: ripple
             width: ripple.implicitWidth
@@ -162,12 +172,8 @@ Button {
             opacity: 0
             visible: width > 0 && height > 0
 
-            property real implicitWidth: 0
-            property real implicitHeight: 0
-
-            Behavior on opacity {
-                animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
-            }
+            implicitWidth: 0
+            implicitHeight: 0
 
             RadialGradient {
                 anchors.fill: parent
@@ -193,6 +199,7 @@ Button {
             }
         }
     }
+
     contentItem: StyledText {
         text: root.buttonText
     }

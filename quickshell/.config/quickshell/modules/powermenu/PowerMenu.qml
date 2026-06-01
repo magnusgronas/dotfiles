@@ -103,7 +103,7 @@ Scope {
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
             color: ColorUtils.transparentize(Appearance.m3colors.m3background, 0.6)
-            
+
             anchors {
                 top: true
                 left: true

@@ -18,7 +18,7 @@ Singleton {
     property QtObject sizes
     property string syntaxHighlightingTheme
 
-    property real backgroundTransparency: 0.11
+    property real backgroundTransparency: 0
     property real contentTransparency: 0.57
 
     m3colors: QtObject {
@@ -80,7 +80,7 @@ Singleton {
 
     colors: QtObject {
         property color colSubtext: m3colors.m3outline
-        property color colLayer0: ColorUtils.transparentize(m3colors.m3background, root.backgroundTransparency)
+        property color colLayer0: ColorUtils.mix(ColorUtils.transparentize(m3colors.m3background, root.backgroundTransparency), m3colors.m3primary, false ? 0.99 : 1)
         property color colOnLayer0: m3colors.m3onBackground
         property color colLayer0Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer0, colOnLayer0, 0.9, root.contentTransparency))
         property color colLayer0Active: ColorUtils.transparentize(ColorUtils.mix(colLayer0, colOnLayer0, 0.8, root.contentTransparency))
@@ -296,29 +296,29 @@ Singleton {
         }
         property QtObject variableAxes: QtObject {
             property var main: ({
-                "wght": 450,
-                "wdth": 100
-            })
+                    "wght": 450,
+                    "wdth": 100
+                })
             property var numbers: ({
-                "wght": 450
-            })
+                    "wght": 450
+                })
             property var title: ({
-                "wght": 550,
-                "ROND": 100
-            })
+                    "wght": 550
+                })
             property var round: ({
-                "ROND": 100
-            })
+                    "ROND": 100,
+                    "wght": 550
+                })
         }
         property QtObject size: QtObject {
-            property int smallest: 12
-            property int smaller: 14
-            property int small: 16
-            property int normal: 18
-            property int large: 20
-            property int larger: 21
-            property int largest: 24
-            property int huge: 25
+            property int smallest: 10
+            property int smaller: 12
+            property int small: 14
+            property int normal: 16
+            property int large: 18
+            property int larger: 19
+            property int largest: 22
+            property int huge: 23
             property int title: largest
         }
     }
