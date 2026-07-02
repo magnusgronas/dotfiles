@@ -4,7 +4,6 @@ import QtQuick
 import QtQuick.Layouts
 
 import qs.common
-import qs.common.functions
 import qs.common.widgets
 import qs.services
 
@@ -35,7 +34,7 @@ Item {
     RowLayout {
         id: layout
         anchors.centerIn: parent
-        spacing: 4
+        spacing: 8
 
         StyledText {
             text: root.isFocusMode ? Pomodoro.displayTime : DateTime.time

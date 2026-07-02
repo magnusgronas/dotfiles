@@ -29,8 +29,8 @@ Button {
     property color colBackgroundHover: Colors?.md3.surface_variant
     property color colBackgroundToggled: Colors?.md3.primary
     property color colBackgroundToggledHover: Colors?.md3.primary_fixed
-    property color colRipple: Colors?.md3.on_surface
-    property color colRippleToggled: Colors?.md3.on_primary
+    property color colRipple: ColorUtils.transparentize(Colors?.md3.on_surface, 0.8)
+    property color colRippleToggled: ColorUtils.transparentize(Colors?.md3.on_primary, 0.6)
 
     opacity: root.enabled ? 1 : 0.4
 

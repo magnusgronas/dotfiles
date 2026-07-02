@@ -22,18 +22,22 @@ Singleton {
     readonly property real timeToEmpty: device.timeToEmpty
     readonly property real timeToFull: device.timeToFull
 
+    readonly property var profile: PowerProfiles.profile
+    readonly property string currentProfile: PowerProfile.toString(profile)
+    readonly property bool isPowerSaver: profile === PowerProfile.PowerSaver
+    readonly property bool isPerformance: profile === PowerProfile.Performance
+
     readonly property var statusColor: {
         if (isCharging)
             return Colors?.md3.green;
         if (isCritical)
             return Colors?.md3.error;
-        if (isLow)
+        if (isPerformance)
+            return Colors.md3.primary;
+        if (isLow || isPowerSaver)
             return Colors?.md3.yellow;
-        return Colors?.md3.primary;
+        return Colors?.md3.on_surface;
     }
-
-    readonly property var profile: PowerProfiles.profile
-    readonly property string currentProfile: PowerProfile.toString(profile)
 
     readonly property var allDevices: UPower.devices
 

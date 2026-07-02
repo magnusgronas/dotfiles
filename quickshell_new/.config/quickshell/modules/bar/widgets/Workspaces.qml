@@ -46,7 +46,6 @@ Item {
         radius: height / 2
         color: Colors?.md3.primary
         anchors.verticalCenter: parent.verticalCenter
-        z: 99
 
         readonly property int rawIndex: Hyprland.focusedWorkspace?.id ? (Hyprland.focusedWorkspace.id - 1) : 0
         readonly property int activeIndex: Math.max(0, Math.min(rawIndex, root.workspacesShown - 1))
@@ -88,7 +87,7 @@ Item {
 
         Repeater {
             model: root.workspacesShown
-            Item {
+            delegate: Item {
                 id: dotRoot
                 required property int index
                 width: root.buttonWidth
@@ -99,11 +98,26 @@ Item {
                 readonly property bool isActive: Hyprland.focusedWorkspace?.id === workspaceId
                 readonly property bool isOccupied: ws !== undefined
                 readonly property bool isUrgent: ws ? ws.urgent : false
-                readonly property bool isNextOccupied: index < (root.workspacesShown - 1) && root.workspaceMap[workspaceId + 1] !== undefined
-                readonly property bool isNextActive: Hyprland.focusedWorkspace?.id === workspaceId + 1
 
                 readonly property int windowCount: dotRoot.ws ? dotRoot.ws.toplevels.values.length : 0
+                readonly property int nextWindowCount: root.workspaceMap[workspaceId + 1] ? root.workspaceMap[workspaceId + 1].toplevels.values.length : 0
 
+                // Center divider
+                Rectangle {
+                    visible: dotRoot.index === Math.floor(root.workspacesShown / 2) - 1
+
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    width: 2
+                    height: 16
+                    radius: 1
+
+                    color: ColorUtils.transparentize(Colors.md3.on_surface, 0.8)
+                    z: -1
+                }
+
+                // Attention animation
                 Rectangle {
                     anchors.centerIn: parent
                     width: dot.width
@@ -132,11 +146,12 @@ Item {
                             from: 0.8
                             to: 0.0
                             duration: 1200
-                            easing.type: Easing.OutQuad
+                            easing.type: Easing.OutQuart
                         }
                     }
                 }
 
+                // Connecting occupied workspaces
                 Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.horizontalCenter
@@ -144,9 +159,9 @@ Item {
 
                     height: 14
 
-                    opacity: (dotRoot.isOccupied && dotRoot.isNextOccupied && !dotRoot.isActive && !dotRoot.isNextActive) ? 1 : 0
+                    opacity: (dotRoot.windowCount > 0 && dotRoot.nextWindowCount > 0) ? 1 : 0
 
-                    color: Colors?.palette.neutral30
+                    color: ColorUtils.transparentize(Colors?.md3.secondary, 0.8)
                     z: -1
 
                     Behavior on opacity {
@@ -157,6 +172,7 @@ Item {
                     }
                 }
 
+                // Number of windows indicator
                 Row {
                     anchors.top: dot.bottom
                     anchors.topMargin: 4
@@ -185,6 +201,7 @@ Item {
                     }
                 }
 
+                // Workspace dot
                 RippleButton {
                     id: dot
                     anchors.centerIn: parent

@@ -11,6 +11,8 @@ Scope {
     id: root
     property int cornerRadius: Appearance.sizes.roundCornerSize
     property int barHeight: Appearance.sizes.barHeight
+    property bool floating: false
+    property bool transparent: true
 
     Variants {
         model: Quickshell.screens
@@ -18,6 +20,7 @@ Scope {
         LazyLoader {
             id: barLoader
             required property ShellScreen modelData
+            // TODO: Should not be active under certain conditions, e.g. when lockscreen is active (semi-optimizaition ig)
             active: true
 
             component: PanelWindow {
@@ -31,23 +34,26 @@ Scope {
                     right: true
                 }
 
-                implicitHeight: root.barHeight + root.cornerRadius
+                margins {
+                    top: root.floating ? 8 : 0
+                    right: root.floating ? 8 : 0
+                    left: root.floating ? 8 : 0
+                }
+
+                implicitHeight: root.barHeight + (root.transparent ? 0 : root.cornerRadius)
                 exclusiveZone: root.barHeight
                 exclusionMode: ExclusionMode.Ignore
                 WlrLayershell.namespace: "quickshell:bar"
 
-                MouseArea {
-                    id: hoverRegion
-                    anchors.fill: parent
-
-                    BarContent {
-                        id: barContent
-                        implicitHeight: root.barHeight
-                        anchors {
-                            left: parent.left
-                            top: parent.top
-                            right: parent.right
-                        }
+                BarContent {
+                    id: barContent
+                    implicitHeight: root.barHeight
+                    floating: root.floating
+                    transparent: root.transparent
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        right: parent.right
                     }
                 }
             }

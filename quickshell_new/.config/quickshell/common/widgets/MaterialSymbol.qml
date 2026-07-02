@@ -6,10 +6,12 @@ StyledText {
     property real iconSize: 16
     property real fill: 1
     property real truncatedFill: Math.round(fill * 100) / 100
-    renderType: fill !== 0 ? Text.CurveRendering : Text.NativeRendering
+    renderType: fill !== 0 ? Text.NativeRendering : Text.NativeRendering
+    // renderType: Text.NativeRendering
     text: symbol
     font {
-        hintingPreference: Font.PreferFullHinting
+        hintingPreference: Font.PreferNoHinting
+        // hintingPreference: Font.PreferFullHinting
         family: "Material Symbols Rounded"
         pixelSize: iconSize
         weight: Font.Normal + (Font.DemiBold - Font.Normal) * fill
