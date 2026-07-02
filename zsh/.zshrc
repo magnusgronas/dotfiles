@@ -11,6 +11,8 @@ fi
 export JAVA_HOME=/usr/lib/jvm/default
 export PATH=$JAVA_HOME/bin:$PATH
 
+export MANPAGER="nvim +Man!"
+
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 

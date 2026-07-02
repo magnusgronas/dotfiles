@@ -1,5 +1,5 @@
-#theme=Matugen
-theme = TokyoNight Storm
+theme=Matugen
+# theme = TokyoNight Storm
 
 class = ghostty
 
@@ -14,8 +14,10 @@ window-padding-color = background
 
 font-family = JetBrainsMono Nerd Font
 font-size = 18
+# font-thicken = true
 
 cursor-style = bar
 adjust-cursor-thickness = 1
+
 # cursor-invert-fg-bg = true
 shell-integration-features = no-cursor
