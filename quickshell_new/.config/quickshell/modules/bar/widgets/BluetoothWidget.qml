@@ -1,6 +1,8 @@
 import qs.common.widgets
+import qs.services
 
 MaterialSymbol {
-    symbol: "bluetooth"
+    symbol: Bluetooth.symbol
     iconSize: 24
+    color: Bluetooth.color
 }

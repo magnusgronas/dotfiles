@@ -14,6 +14,7 @@ Singleton {
 
     readonly property var activeDevice: devices.find(d => d.connected)
 
+
     readonly property Network activeNetwork: {
         if (activeDevice && activeDevice.networks) {
             return activeDevice.networks.values.find(n => n.connected || n.stateChanging) || null;
@@ -23,9 +24,13 @@ Singleton {
 
     readonly property var availableNetworks: activeDevice?.networks?.values.map(a => a.name) ?? []
 
+    readonly property var networkList: activeDevice?.networks?.values ?? []
+
     readonly property bool isWifiEnabled: Networking.wifiEnabled
     readonly property bool isConnected: activeDevice !== null && activeNetwork !== null && activeNetwork.connected
     readonly property bool isWifiActive: isWifiEnabled && isConnected && activeDevice?.type === DeviceType.Wifi
+
+    readonly property bool darkMode: Config.darkMode
 
     readonly property string currentNetworkName: {
         if (!isWifiEnabled)
@@ -58,7 +63,7 @@ Singleton {
         if (!isWifiEnabled)
             return "wifi_off";
         if (!isConnected)
-            return "wifi_off";
+            return "wifi";
         if (activeNetwork && activeNetwork.stateChanging)
             return "android_wifi_3_bar_question";
 
@@ -98,7 +103,10 @@ Singleton {
     onIsConnectedChanged: {
         console.log("Wifi chagned");
         if (activeNetwork) {
-            Quickshell.execDetached(["notify-send", "Network connected", `Connected to ${activeNetwork.name}`, "-u", "normal", "-t", "3000", "-i", "network-wireless", "-a", "NetworkService"]);
+            Quickshell.execDetached(["bash", "-c", `notify-send "Connection Established" "Connected to ${activeNetwork.name}" -u normal -t 3000 -i ~/.config/quickshell/assets/icons/wifi.svg -a NetworkService`]);
+        }
+        if (!activeNetwork) {
+            Quickshell.execDetached(["bash", "-c", `notify-send "Disconnected" "The network connection has been disconnected" -u normal -t 3000 -i ~/.config/quickshell/assets/icons/wifi_off.svg -a NetworkService`]);
         }
     }
 }

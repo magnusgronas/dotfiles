@@ -7,6 +7,7 @@ import Quickshell.Services.Notifications
 
 import QtQuick
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 import qs.common
 import qs.common.widgets
@@ -75,18 +76,55 @@ Scope {
                         anchors.fill: parent
                         anchors.margins: 10
                         spacing: 10
-                        Item {
-                            Layout.preferredHeight: 42
-                            Layout.preferredWidth: 42
+                        Rectangle {
+                            id: notifRect
+
+                            readonly property bool isRich: card.modelData.image && card.modelData.image.toString() !== "" && !notifImage.source.toString().includes("assets/icons")
+
+                            Layout.preferredHeight: 50
+                            Layout.preferredWidth: 50
                             Layout.alignment: Qt.AlignTop
+                            radius: width / 2
+                            color: isRich ? "transparent" : Colors.md3.surface_container_highest
 
-                            IconImage {
-                                id: notifImage
-                                anchors.fill: parent
-                                visible: card.modelData.image && card.modelData.image.toString() !== ""
-                                source: visible ? card.modelData.image : ""
+                            Item {
+                                width: notifRect.isRich ? notifRect.width : 32
+                                height: notifRect.isRich ? notifRect.height : 32
+                                anchors.centerIn: parent
+
+                                Image {
+                                    id: notifImage
+                                    anchors.fill: parent
+                                    visible: !overlay.visible
+                                    fillMode: Image.PreserveAspectCrop
+
+                                    source: {
+                                        if (card.modelData.image && card.modelData.image.toString() !== "") {
+                                            return card.modelData.image;
+                                        }
+                                        if (card.modelData.appIcon && card.modelData.appIcon.toString() !== "") {
+                                            return Quickshell.iconPath(card.modelData.appIcon, "/home/magnus/.config/quickshell/assets/icons/info.svg");
+                                        }
+                                        return Quickshell.iconPath("/home/magnus/.config/quickshell/assets/icons/info.svg");
+                                    }
+                                    layer.enabled: true
+                                    layer.effect: OpacityMask {
+                                        maskSource: Rectangle {
+                                            width: notifImage.width
+                                            height: notifImage.height
+
+                                            radius: notifImage.width / 2
+                                        }
+                                    }
+                                }
+                                ColorOverlay {
+                                    id: overlay
+                                    anchors.fill: notifImage
+                                    source: notifImage
+                                    color: Colors.md3.on_surface
+                                    visible: notifImage.source.toString().includes("assets/icons")
+                                }
                             }
-
                         }
                         ColumnLayout {
                             Layout.fillWidth: true

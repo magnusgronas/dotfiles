@@ -28,7 +28,6 @@ Row {
             anchors.centerIn: parent
             spacing: 12
 
-            // TODO: Make Bluetooth widget
             BluetoothWidget {
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -40,7 +39,7 @@ Row {
         }
 
         onClicked: {
-            console.log("Wifi / Bluetooth menu opened");
+            States.connectivityMenuOpen = !States.connectivityMenuOpen
         }
     }
 
