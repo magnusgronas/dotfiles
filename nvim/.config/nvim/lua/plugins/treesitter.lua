@@ -1,39 +1,26 @@
-return {
-	"nvim-treesitter/nvim-treesitter",
-	branch = "master",
-	build = ":TSUpdate",
-	event = { "BufReadPre", "BufNewFile" },
-	---@class TSConfig
-	config = function()
-		require("nvim-treesitter.configs").setup({
-			highlight = { enable = true },
-			indent = { enable = true },
-			ensure_installed = {
-				"bash",
-				"c",
-				"cpp",
-				"diff",
-				"javascript",
-				"json",
-				"latex",
-				"lua",
-				"luadoc",
-				"markdown",
-				"markdown_inline",
-				"ninja",
-				"python",
-				"rasi",
-				"regex",
-				"rst",
-				"toml",
-				"typescript",
-				"vim",
-				"vimdoc",
-				"xml",
-				"yaml",
-				"tsx",
-			},
-			auto_install = true,
-		})
-	end,
+local treesitter = require("nvim-treesitter")
+
+local ensure_installed = {
+    "json", "javascript", "typescript", "tsx", "go", "yaml", "html", "css", "python", "http", "bash", "gitignore", "java", "rust", "qmljs"
 }
+
+treesitter.install(ensure_installed)
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function(args)
+        local buf = args.buf
+        local ft = vim.bo[buf].filetype
+
+        local lang = vim.treesitter.language.get_lang(ft)
+        if not lang then
+            return
+        end
+
+        local ok_add = pcall(vim.treesitter.language.add, lang)
+        if not ok_add then
+            return
+        end
+        pcall(vim.treesitter.start, buf, lang)
+    end
+})
